@@ -1,0 +1,6 @@
+<div class="parallax parallax-<t4 type="content" name="Size of parallax" output="selective-output" modifiers="" process-format="true" format="$value" />">
+  <img data-interchange="<t4 type="content" name="Large Image" output="selective-output" modifiers="" process-format="true" format="[<t4 type="media" id="666" formatter="path/*" />,(default)]," /><t4 type="content" name="Medium Image" output="selective-output" modifiers="" process-format="true" format="[<t4 type=&quot;content&quot; name=&quot;Medium Image&quot; output=&quot;normal&quot; modifiers=&quot;medialibrary, nav_sections&quot; formatter=&quot;path/*&quot;  />,(medium)]," /><t4 type="content" name="Large Image" output="selective-output" modifiers="" process-format="true" format="[<t4 type=&quot;content&quot; name=&quot;Large Image&quot; output=&quot;normal&quot; modifiers=&quot;medialibrary, nav_sections&quot; formatter=&quot;path/*&quot;  />,(large)],"/>" alt="<t4 type="content" name="Alt text" output="normal" modifiers=""  />" src="<t4 type="content" name="Large Image" output="normal" modifiers="medialibrary, nav_sections" formatter="path/*"  />" />
+  <noscript>
+    <img src="<t4 type="content" name="No script image" output="normal" formatter="path/*" />" alt="<t4 type="content" name="Alt text" output="normal" modifiers=""  />" />
+  </noscript>
+</div>

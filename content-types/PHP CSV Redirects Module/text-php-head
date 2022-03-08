@@ -1,0 +1,15 @@
+<?php
+/* Version 1.2.0 */
+$element_filename = $_SERVER['DOCUMENT_ROOT'].'<t4 type="content" name="CSV File" output="file" />';
+$element_exactmatch = '<t4 type="content" name="Exact Match" output="normal" />';
+$element_ignorequery = '<t4 type="content" name="Ignore Query" output="normal" />';
+$element_mainlibrary = '<t4 type="content" name="Main Library" output="normal" formatter="path/*" />';
+
+
+header_remove();
+
+@include_once($_SERVER['DOCUMENT_ROOT'].$element_mainlibrary);
+if (class_exists('\T4\CSVRedirect\Core')) {
+    $best_percent = \T4\CSVRedirect\Core::run($element_filename,$element_exactmatch,$element_ignorequery);
+}
+?>

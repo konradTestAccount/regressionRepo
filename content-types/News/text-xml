@@ -1,0 +1,6 @@
+<item>
+	<title><t4 type="content" name="Title" output="normal" modifiers="medialibrary, nav_sections"  /></title>
+	<link><t4 type="content" name="Name" output="fulltext" modifiers="medialibrary, nav_sections" use-element="true" filename-element="Title"  /></link>
+	<pubDate><t4 type="content" name="Publish date" output="normal" modifiers="medialibrary, nav_sections" date_format="EEEE, d MMMM yyyy"  /></pubDate>
+	<description><![CDATA[<t4 type="content" name="Teaser" output="normal" modifiers="medialibrary, nav_sections"  />]]></description>
+</item>

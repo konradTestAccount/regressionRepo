@@ -1,0 +1,38 @@
+
+try {
+  
+  //og:type
+  var value = com.terminalfour.publish.utils.BrokerUtils.processT4Tags(dbStatement, publishCache, section, content, language, isPreview, '<t4 type="meta" id="31" />');
+  if(value != '' ){
+    document.write(value);
+  } else{
+    document.write('<meta property="og:type" content="article" />');
+  }
+  
+  
+  //og:url
+  var value = com.terminalfour.publish.utils.BrokerUtils.processT4Tags(dbStatement, publishCache, section, content, language, isPreview, '<t4 type="navigation" name="get OG Fulltext URLs" id="222" />');
+  
+  var url = '';
+  if (!isPreview) {
+ 	 url = publishCache.getChannel().getChannelPublishURL();
+  }
+  if(value == '' ){
+    value = com.terminalfour.publish.utils.BrokerUtils.processT4Tags(dbStatement, publishCache, section, content, language, isPreview, '<t4 type="navigation" name="Path to current section" id="29" />');
+  }
+  
+  document.write('<meta property="og:url" content="' + url + value + '" />');
+  
+  
+  
+   //og:title
+  var value = com.terminalfour.publish.utils.BrokerUtils.processT4Tags(dbStatement, publishCache, section, content, language, isPreview, '<t4 type="meta" id="19" />');
+  if(value == '' ){
+    value = com.terminalfour.publish.utils.BrokerUtils.processT4Tags(dbStatement, publishCache, section, content, language, isPreview, '<meta property="og:title" content="<t4 type="title" />" />');
+  }
+  
+  document.write(value);
+  
+} catch(err) {
+  document.write(err);
+}

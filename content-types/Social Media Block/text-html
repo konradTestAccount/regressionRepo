@@ -1,0 +1,29 @@
+<section class="social-block row">
+        <div class="small-12 columns">
+          <t4 type="content" name="Heading" output="selective-output" process-format="true" format="<div class=&quot;h2&quot;>$value</div>" />
+        </div>
+        <div class="small-12 large-4 medium-6 columns">
+          <div class="h3">Facebook</div>
+          <div style="width: 100% !important">
+          <t4 type="content" name="Facebook Code" output="normal" />
+        </div>
+        <div class="small-12 large-4 medium-6 columns">
+          <div class="h3">Twitter</div>
+          <t4 type="content" name="Twitter Code" output="normal" />
+        </div>
+        <div class="small-12 large-4 medium-6 columns">
+          <div class="h3">Instagram</div>
+          <script src="<t4 type="media" id="9793" formatter="path/*" />"></script>
+            <script type="text/javascript">
+                var userFeed = new Instafeed({
+                    get: 'user',
+                    userId: '<t4 type="content" name="Instagram User ID" output="normal" modifiers="striptags,htmlentities" />',
+                    accessToken: '<t4 type="content" name="Instagram Access Token" output="normal" modifiers="striptags,htmlentities" />',
+                    limit: '6',
+                    template: '<a href="{{link}}"><img src="{{image}}" alt="{{caption}}"></a>'
+                });
+                userFeed.run();
+            </script>
+            <div id="instafeed-main"></div>
+        </div>
+      </section>

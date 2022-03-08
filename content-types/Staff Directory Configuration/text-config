@@ -1,0 +1,192 @@
+<?php
+$errorAC = [];
+try {
+    /* Version 2.1 */
+    $config = [];
+    $config['source']      = '<t4 type="content" name="JSON File" output="normal" formatter="path/*" />';
+    $config['library']     = '<t4 type="content" name="PHP Search Library" output="normal" formatter="path/*" />';
+    $config['max-results'] = '<t4 type="content" name="Max Results per Page" output="normal" />';
+   
+
+    mb_http_output('utf-8');
+    mb_internal_encoding('utf-8');
+
+    if (!empty($config['option'])) {
+        $variables = explode("\n", $config['option']);
+
+        $new_variables = array();
+        //Check variables
+        foreach ($variables as $variable) {
+            //Check my pattern variable = value
+            $check = preg_match('/(.+)=(.+)$/iUm', $variable, $output_array);
+            //Remove " and ' and taking off first and final spaces.
+            if (isset($output_array[1], $output_array[2])) {
+                $key = trim(str_replace(array('"', '\''), '', $output_array[1]));
+                $value = str_replace(array('"', '\''), '', trim($output_array[2]));
+                //Check if there are not set other variables that are setting in different way in this script
+                if (!empty($key) && !empty($value)) {
+                    $new_variables[$key] = $value;
+                }
+            }
+        }
+        if (!isset($config['options'])) {
+            $config['options'] = array();
+        }
+        foreach ($new_variables as $key => $value) {
+            if (!isset($config['options'][$key])) {
+                $config['options'][$key] = null;
+            }
+            $config['options'][$key] = $value;
+        }
+    }
+
+    if (preg_match("/t4_([0-9]{16,20}+)\.php/Ui", $_SERVER['REQUEST_URI'], $output_array)) {
+        throw new Exception("Sorry, Course Search is not available in preview.", 1);
+    }
+    // Configuration Options
+    $stopWords = array(
+        '/\band\b/is',
+        '/\bof\b/is',
+        '/\bin\b/is',
+        '/\bor\b/is',
+        '/\bwith\b/is',
+        '/\bthe\b/is',
+        '/\bat\b/is'
+    );
+
+    require_once((strpos($config['library'], '.phar') !== false ? 'phar://' : '') . realpath($_SERVER["DOCUMENT_ROOT"]).$config['library'] . (strpos($config['library'], '.phar') !== false ? '/vendor/autoload.php' : ''));
+
+    $queryHandler = \T4\PHPSearchLibrary\QueryHandlerFactory::getInstance('QueryHandler', $_SERVER['QUERY_STRING']);
+    $queryHandler->setStopWords($stopWords);
+    $queryHandler->setDontRemoveStopwords(array('title', 'department', 'type'));
+    $queryHandler->setDontTokenize(array('title', 'department', 'type'));
+    $queryHandler->setIgnoreQueries(array('showall','paginate','page'));
+    $queryHandler->stemQuery(array('query'));
+    $queryHandler->handleQuery();
+
+    // Initialise our search handler and filters
+    $search = \T4\PHPSearchLibrary\SearchFactory::getInstance('Search', $config['source']);
+    $substringSearch = \T4\PHPSearchLibrary\FilterFactory::getInstance('FilterBySubstring', $search);
+    $wordSearch = \T4\PHPSearchLibrary\FilterFactory::getInstance('FilterByWord', $search);
+    $letterComparisonSearch = \T4\PHPSearchLibrary\FilterFactory::getInstance('FilterByLetterComparison', $search);
+    $costSearch = \T4\PHPSearchLibrary\FilterFactory::getInstance('FilterByRange', $search);
+    $exactSearch = \T4\PHPSearchLibrary\FilterFactory::getInstance('FilterByExactMatch', $search);
+    $dateSearch = \T4\PHPSearchLibrary\FilterFactory::getInstance('FilterByDate', $search);
+
+
+    if ($queryHandler->isQuerySet('lastname')) {
+        $letterComparisonSearch->setMember('element', 'lastname');
+        $letterComparisonSearch->setMember('query', $queryHandler->getQueryValue('lastname'));
+        $letterComparisonSearch->setMember('startPosition', 0);
+        $letterComparisonSearch->setMember('endPosition', 1);
+        $letterComparisonSearch->runFilter();
+    }
+
+    if ($queryHandler->isQuerySet('type')) {
+        $wordSearch->setMember('element', 'type');
+        $wordSearch->setMember('query', $queryHandler->getQueryValue('type'));
+        $wordSearch->runFilter();
+    }
+
+    if ($queryHandler->isQuerySet('title')) {
+        $wordSearch->setMember('element', 'title');
+        $wordSearch->setMember('query', $queryHandler->getQueryValue('title'));
+        $exactSearch->setMember('multipleValueState', true);
+        $exactSearch->setMember('multipleValueSeparator', ', ');
+        $wordSearch->runFilter();
+    }
+
+    if ($queryHandler->isQuerySet('department')) {
+        $exactSearch->setMember('element', 'department');
+        $exactSearch->setMember('query', $queryHandler->getQueryValue('department'));
+        $exactSearch->setMember('multipleValueState', true);
+        $exactSearch->setMember('multipleValueSeparator', ', ');
+        $exactSearch->runFilter();
+    }
+
+    if ($queryHandler->isQuerySet('keywords')) {
+        $substringSearch->setMember('element', 'firstname');
+        $substringSearch->setMember('query', $queryHandler->getQueryValue('keywords'));
+        $substringSearch->setMember('combinationOption', true);
+        $substringSearch->runFilter();
+
+        $substringSearch->setMember('element', 'lastname');
+        $substringSearch->runFilter();
+
+        $search->combineResults();
+    }
+
+    // Get the intersection of multiple result sets if necessary
+    $search->intersectDocumentResults();
+
+    // Instantiate the DocumentCollection
+    $documentCollection = \T4\PHPSearchLibrary\DocumentCollectionFactory::getInstance(
+        'DocumentCollection',
+        $search->getDocuments(),
+        $search->getDocumentResults(),
+        $queryHandler->doQuerysExist()
+    );
+
+    // Sort the document results
+    if ($queryHandler->isQuerySet('department')) {
+        $documentCollection->sort('type', ['Other', 'Academic', 'Researcher']);
+        echo "sort here";
+    } else {
+        $documentCollection->sort('lastname', SORT_ASC);
+    }
+    
+
+    $paginate = 0;
+    if ((int) $config['max-results'] > 0 || ($queryHandler->isQuerySet('paginate'))) {
+        $paginate = (int) ($queryHandler->isQuerySet('paginate') ? $queryHandler->getQueryValue('paginate')[0] : $config['max-results']);
+        if ($paginate > 0) {
+            // Initialise the Pagination
+            $pagination = \T4\PHPSearchLibrary\PaginationFactory::getInstance(
+                'Pagination',
+                $documentCollection,
+                $queryHandler,
+                $paginate
+            );
+        
+            $pagination->setMember('ulClass', 'pagination');
+            $pagination->setMember('currentPage', str_replace('/index.php', '/', $_SERVER['SCRIPT_NAME']));
+            $pagination->setMember('currentPageClass', 'current');
+            $pagination->setMember('ellipsisClass', 'unavailable');
+            $pagination->setMember('ellipsisGap', 4);
+            $pagination->setMember('previousLinkText', '&lt;');
+            $pagination->setMember('nextLinkText', '&gt;');
+            $pagination->setMember('firstLinkText', '&lt;&lt;');
+            $pagination->setMember('lastLinkText', '&gt;&gt;');
+        }
+    }
+
+    $query          = $queryHandler->getQueryValuesForPrint();
+    $results        = $documentCollection->returnArrayResults();
+    if (isset($pagination) && $paginate < $documentCollection->getTotalNumberOfDocumentsInCollection()) {
+        $page               = $pagination->getPage('current');
+        $paginationArray    = $pagination->displayNavigation(false, true);
+        $paginateDropdown   = [$config['max-results'],5,10,20,30,0];
+    } else {
+        $page = 1;
+        $paginateDropdown   = [];
+    }
+
+    $current = $page['text'] > 0 ? $page['text'] : 1;
+    $totalResults = $documentCollection->getNumberOfDocumentResults() > 0  ? $documentCollection->getNumberOfDocumentResults() : $documentCollection->getTotalNumberOfDocumentsInCollection();
+    $resultTo = $paginate *$current;
+    if ($resultTo > $totalResults) {
+        $resultTo = $totalResults;
+    }
+    $resultFrom = ($paginate*($current-1)+1);
+} catch (\UnderflowException $e) {
+    $errorAC[] = $e->getMessage();
+} catch (\RuntimeException $e) {
+    $errorAC[] = $e->getMessage();
+} catch (\InvalidArgumentException $e) {
+    $errorAC[] = $e->getMessage();
+} catch (\LengthException $e) {
+    $errorAC[] = $e->getMessage();
+} catch (\Exception $e) {
+    $errorAC[] = $e->getMessage();
+}
+?>

@@ -1,0 +1,21 @@
+          <div class="soc">
+            <div class="h4">Instagram</div>
+              
+            <script type="text/javascript" src="<t4 type="media" formatter="path/*" id="4753" />"></script> 
+            <script type="text/javascript">
+          
+              if(typeof Instafeed !== 'undefined') {
+              	var userFeed = new Instafeed({
+                    get: 'user',
+                    userId: '<t4 type="content" name="Instagram User ID" output="normal" modifiers="striptags,htmlentities" />',
+                    accessToken: '<t4 type="content" name="Instagram Access Token" output="normal" modifiers="striptags,htmlentities" />',
+                    limit: '6',
+                    template: '<a href="{{link}}"><img src="{{image}}" alt="{{caption}}"></a>'
+                });
+                userFeed.run();
+              }
+              
+                
+            </script>
+            <div id="instafeed"></div>
+          </div>

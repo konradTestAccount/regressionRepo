@@ -1,0 +1,5 @@
+try {
+	document.write(template.getID());
+} catch(error) {
+  	document.write('ERROR (contentTypeName): ' + error);
+}

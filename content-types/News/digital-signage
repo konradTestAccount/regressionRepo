@@ -1,0 +1,11 @@
+<div class="slider-slide" style="background-image: url(<t4 type="content" name="Digital Signage Image" output="normal" formatter="path/*" />)">
+	<h2><t4 type="content" name="Title" output="normal" modifiers="striptags,htmlentities" /></h2>
+	<p class="intro"><t4 type="content" name="Intro paragraph" output="normal" modifiers="striptags,htmlentities" /></p>
+	<div class="date">
+		<div class="day"><t4 type="content" name="Publish date" output="normal" date_format="d" /></div>
+		<div class="month"><t4 type="content" name="Publish date" output="normal" date_format="MMMM" /></div>
+	</div>
+  	<svg height="155" width="300" style="background-color: rgba(255,255,255,.5); padding: 1em; position: absolute; right: 0; bottom: 0; border-top-left-radius: 1em">
+      <image xlink:href="<t4 type="media" id="140" formatter="path/*" />" src="<t4 type="media" id="139" formatter="path/*" />"  height="123" width="100%" />
+    </svg>
+</div>

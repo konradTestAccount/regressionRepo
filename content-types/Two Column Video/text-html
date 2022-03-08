@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="small-12 columns">
+    <t4 type="content" name="Heading" output="selective-output" modifiers="" process-format="true" format="<h3 class=&quot;subheader&quot;>$value</h3>" />
+  </div>
+  <div class="small-12 large-6 columns">
+    <t4 type="content" name="Column 1 Video URL" output="selective-output" modifiers="" process-format="true" format="<div class=&quot;flex-video&quot;>
+      <iframe src=&quot;$value&quot; width=&quot;500&quot; height=&quot;281&quot;  allowfullscreen></iframe>
+    </div>" />
+  </div>
+  <div class="small-12 large-6 columns">
+    <t4 type="content" name="Column 2 Video URL" output="selective-output" process-format="true" format="<div class=&quot;flex-video&quot;>
+      <iframe src=&quot;$value&quot; width=&quot;500&quot; height=&quot;281&quot;   allowfullscreen></iframe>
+    </div>" />
+  </div>
+</div><!-- /.row -->

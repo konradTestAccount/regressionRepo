@@ -1,0 +1,11 @@
+ 		  <div class="<t4 type="content" name="Cookie Preference" output="selective-output" process-format="true" format="$value" />">
+            <img src="<t4 type="content" name="Large Image" output="normal" formatter="path/*" />" alt="<t4 type="content" name="Alt Text" output="normal" modifiers=""  />">
+            <div class="row">
+              <div class="caption-container small-11 medium-6 large-5 columns">
+                <div class="slick-overlay">
+                  <t4 type="content" name="Slide Title" output="selective-output" process-format="true" format="<h3>$value</h3>" />
+                  <t4 type="content" name="Additional Information" output="selective-output" process-format="true" format="<p>$value</p>" />
+                </div>
+              </div>
+            </div>
+          </div>

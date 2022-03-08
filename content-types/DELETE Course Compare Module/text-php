@@ -1,0 +1,638 @@
+<?php
+
+/**
+ * CourseCompare allows end users to save courses and compare data associated with each course on a single page.
+ *
+ * Data that is compared is defined within the CourseCompare content type and processed in JSON format.
+ * Any Navigation objects required for the application to function are all set within the Config class.
+ * No other classes should be edited, unless you are comfortable working with PHP.
+ *
+ * PHP version 5
+ *
+ * @package    CourseCompare
+ * @author     Dave O'Dwyer <david.odwyer@terminalfour.com>
+ * @version    v1.0.0
+ */
+
+/**
+ *	::::: NOTE NOTE NOTE :::::
+ *	courseURL must be added to JSON course SEARCH using :: Section Details / Section Path / Choose the JSON Course Search JSON section
+ *   "courseURL": "<t4 type="navigation" id="136"/>",
+ */
+
+class Config {
+
+	/**
+	 *	Navigation object below links to the Course Search JSON section.
+	 *
+	 *	Nav Details
+	 *	-------------------
+	 *	Name :: Path to Course Search JSON
+	 *	Type :: Section Details
+	 *	Display Method :: Specific Section
+	 *	Section :: Choose the Course Search JSON section
+	 *	Output :: Section Path
+	 *
+	 **/
+	public static $dataSource = "<t4 type='navigation' id='57'/>/index.json";
+
+	/**
+	 *	Navigation object below links to the Course Comapre Parent Section.
+	 *
+	 *	Nav Details
+	 *	-------------------
+	 *	Name :: Course Compare Path
+	 *	Type :: Section Details
+	 *	Display Method :: Specific Section
+	 *	Section :: Choose the Course Compare Parent Section
+	 *	Output :: Section Path
+	 **/
+	public static $course_compare_link = "<t4 type='navigation' id='27'/>";
+
+	/**
+	 *	Navigation object below links to the Course Search Section.
+	 *
+	 *	Nav Details
+	 *	-------------------
+	 *	Name :: Course Search Path
+	 *	Type :: Section Details
+	 *	Display Method :: Specific Section
+	 *	Section :: Choose the Course Search Section
+	 *	Output :: Section Path
+	 **/
+	public static $course_search_link = "<t4 type='navigation' id='204'/>";
+
+	/**
+	 *	Navigation object below links to the CourseCompare `text/compare_nodes` formatter
+	 *
+	 *	Nav Details
+	 *	-------------------
+	 *	Name :: CourseCompare - JSON Link
+	 *	Type :: Related Content Advanced
+	 *	Fetch Method :: Use Current
+	 *	Use Alternate Content Layout? :: Ticked (YES)
+	 *	Alternate Content Layout :: text/compare_nodes
+	 **/
+	private static $node_json_string = <<<JSON
+<t4 type="navigation" name="CourseCompare - JSON Link - Module" id="74" />
+JSON;
+
+
+	/**
+	 *	Navigation object below links to "Comparison Page Content" child section
+	 *
+	 *	Nav Details ::
+	 *	Name :: Course Compare - Comparison Page Content
+	 * 	Type :: Related Content Advanced
+	 *	Fetch Method :: Use Child
+	 *	Name of Child Section :: 'Comparison Page Content'
+	 *
+	 *	NOTE ::	Ensure that there is NO WHITESPACE after "<<<COMPARISON_PAGE_CONTENT" as it will break the PHP.
+	 **/
+	public static $comparison_page_content = <<<COMPARISON_PAGE_CONTENT
+<t4 type="navigation" name="Course Compare - Comparison Page Content" id="75" />
+COMPARISON_PAGE_CONTENT;
+
+	/**
+	 *	Navigation object below links to "Comparison Page Content" child section
+	 *
+	 *	Nav Details ::
+	 *	Name :: Course Compare - Choose Courses Content
+	 * 	Type :: Related Content Advanced
+	 *	Fetch Method :: Use Child
+	 *	Name of Child Section :: 'Choose Courses Content'
+	 *
+	 *	NOTE ::	Ensure that there is NO WHITESPACE after "<<<CHOOSE_COURSES_CONTENT" as it will break the PHP.
+	 **/
+	public static $choose_courses_content = <<<CHOOSE_COURSES_CONTENT
+<t4 type="navigation" name="Course Compare - Choose Courses Content" id="76" />
+CHOOSE_COURSES_CONTENT;
+	
+	/**
+	 *	Plain text about message alert if you do not select any courses
+	 *
+	 **/
+	public static $no_courses_message = "<p>You haven't saved any courses yet. Please click a course save button to compare courses here.</p>";
+
+	static $dataSourceType = '';
+
+	public static function getComparisonPageContent() {
+		return str_replace('"', "\\'", static::$comparison_page_content);
+	}
+
+
+	public static function getChooseCoursesContent() {
+		return str_replace('"', "\\'", static::$choose_courses_content);
+	}
+
+	// returns the Node JSON file
+	private static function getNodeJson() {
+		$json = static::$node_json_string;
+		$json = CourseData::removeLastComma($json);
+		$json = json_decode($json);
+
+		if(json_last_error() === 0) {
+			return $json;
+		} else {
+			die("Error with JSON syntax");
+		}
+	}
+
+	public static function getCourseDataSource() {
+		if(isset(config::$dataSource)) {
+			return $_SERVER['DOCUMENT_ROOT'] . config::$dataSource;
+		}
+	}
+
+	public static function getCourseDataSourceType() {
+		if(isset(config::$dataSource)) {
+			Config::$dataSourceType = explode('.', config::$dataSource);
+			Config::$dataSourceType = Config::$dataSourceType[count(Config::$dataSourceType) - 1];
+
+			return Config::$dataSourceType;
+
+		}
+	}
+
+	// returns an array with the nodes to show
+	// array[] = $node1
+	// array[] = $node2
+	public static function getColNodesToShow() {
+
+		$json = static::getNodeJson();
+		$data = array();
+
+		foreach($json->compare->menuitem as $node) {
+			if(isset($node->node_title) && (trim($node->node_title) !== '')) {
+				$data[] = $node->node_title;
+			}
+		}
+
+
+		return $data;
+	}
+
+	// returns an array with the titles to show
+	// indexes relate to the correct node array index obtained from above
+	// array[] = $title1
+	// array[] = $title2
+	public static function getColHeadingsToShow() {
+
+		$json = static::getNodeJson();
+		$data = array();
+
+		foreach($json->compare->menuitem as $node) {
+			if(isset($node->output_title) && (trim($node->output_title) !== '')) {
+				$data[] = $node->output_title;
+			}
+		}
+
+
+		return $data;
+	}
+
+}
+
+
+if(!isset($_COOKIE['saved_courses_compare'])) {
+	CourseData::setCookie('saved_courses_compare');
+}
+
+// instantiate the CourseData class
+$course_data = new CourseData();
+
+// Instantiate the CourseList class
+$course_list = CompareFactory::getInstance('CourseList', $course_data);
+
+
+/**
+ * Class used to contain all the HTML before output.
+ *
+ */
+class HTMLOutputter {
+
+	static $content;
+
+	static function addHTML($html) {
+		static::$content .= $html;
+	}
+
+	static function output() {
+		echo static::$content;
+	}
+
+}
+
+/*
+*	Class used to get the course data, process the JSON file and sort the data in an easier to read format.
+*	Also contains the methods used to manipulate the COOKIE present in the end users browser.
+*	The methods are referenced in other classes.
+*	The class is passed from one object to another to prevent dependancy injection.
+*/
+class CourseData {
+
+	public $data_set_file_type;
+	public $data_set_source;
+	public $data_set;
+	public static $expiry;
+
+	function __construct() {
+
+		$this->data_set_file_type = Config::getCourseDataSourceType();
+		$this->data_set_source = Config::getCourseDataSource();
+
+		if($this->data_set_file_type === 'json') {
+			$data_set_json = file_get_contents($this->data_set_source);
+
+			// replace any backslash apostrophes
+			$this->data_set = str_replace("\'", "'", $data_set_json);
+
+			// replacing trailing comma from JSON string
+			$this->data_set = CourseData::removeLastComma($this->data_set);
+
+			// decode the JSON string
+			$this->data_set = json_decode($this->data_set);
+
+			// sort the data
+			$this->data_set = $this->sort_course_data_json($this->data_set);
+		} else if($this->data_set_file_type === 'xml') {
+			$this->data_set = simplexml_load_file($this->data_set_source);
+			$this->data_set = $this->sort_course_data_xml($this->data_set);
+		}
+
+		if(isset($_COOKIE[''])) {
+			self::$expiry = json_decode($_COOKIE['saved_courses_compare'])->expiry;
+		} else {
+			// expire in 30 days
+			self::$expiry = time()+60*60*24*30;
+		}
+	}
+
+	function sort_course_data_xml($data_set) {}
+
+
+	function sort_course_data_json($data_set) {
+		$courses_array = array();
+
+		foreach($data_set as $data) {
+			foreach($data as $course_data) {
+				if(isset($course_data->contentID)) {
+					$courses_array[$course_data->contentID] = (array)$course_data;
+				}
+			}
+		}
+
+		//// var_dump($courses_array);
+		return $courses_array;
+	}
+
+	function courseExists($courseToAdd) {
+
+		if(!is_array($courseToAdd)) {
+			if(!isset($this->data_set[$courseToAdd])) {
+				header("Location:" . $_SERVER['HTTP_REFERER']);
+				return false;
+			}
+		} else {
+			foreach($courseToAdd as $course_id) {
+				if(!isset($this->data_set[$course_id])) {
+					return false;
+				}
+			}
+		}
+
+		// if false was't returned, the course IDs exist
+		return true;
+	}
+
+	function getCol($course_id, $col) {
+
+		if(isset($this->data_set[$course_id][$col])) {
+			return $this->data_set[$course_id][$col];
+		} else {
+			return false;
+		}
+
+	}
+
+	function addToCookie($name, $value) {
+		$this->expiry = json_decode($_COOKIE[$name])->expiry;
+		$new_value = (array)json_decode($_COOKIE[$name]);
+		$new_value[$value] = $value;
+		setcookie($name, json_encode($new_value), (Int)static::$expiry, '/');
+		// die( var_dump($_COOKIE[$name]));
+	}
+
+	function removeFromCookie($name, $value) {
+		$new_value = array_diff((array)json_decode($_COOKIE['saved_courses_compare']), array($value));
+		//var_dump($new_value);
+		setcookie($name, json_encode($new_value), (Int)static::$expiry, '/');
+	}
+
+	public static function setCookie($name) {
+		if(!isset($_COOKIE[$name]) && empty($_COOKIE[$name])) {
+			setcookie($name, json_encode(array('expiry' => static::$expiry)), static::$expiry, '/');
+		} else {
+			return false;
+		}
+	}
+
+	public static function removeLastComma($json) {
+
+		$position = strrpos($json, ',');
+
+		if ($position !== false) {
+			$json = substr_replace($json, '', $position, strlen(','));
+		}
+
+		return $json;
+	}
+
+
+}
+
+class CompareFactory {
+
+	public static function getInstance($instance, $course_data, $course_selections = null) {
+		switch($instance) {
+			case 'Compare':
+				return new Compare($course_data, $course_selections);
+				break;
+			case 'CourseList':
+				return new CourseList($course_data);
+			default:
+				throw new RuntimeException('No instance of '.$instance.' could be created');
+				break;
+		}
+	}
+}
+
+class CourseList {
+
+	public $course_data;
+
+	function __construct($course_data) {
+		$this->course_data = $course_data;
+
+		$this->processGETRequests();
+	}
+
+	function processGETRequests() {
+
+		$get_vars = explode('?', $_SERVER['REQUEST_URI']);
+
+		if(isset($get_vars[1])) {
+			$get_vars = $get_vars[1];
+			$get_vars = explode('&', $get_vars);
+		} else {
+
+			// set get_vars to empty
+			$get_vars = array();
+
+			// by default, load saved courses
+			$this->viewSavedCourses();
+		}
+
+
+		foreach ($get_vars as $parameter) {
+			list($name, $value) = explode('=', $parameter);
+			//HTMLOutputter::addHTML('<!-- name 	= ' . $name . ' -->');
+
+			//HTMLOutputter::addHTML( '<!-- value 	= ' . $value . ' -->');
+
+			switch($name) {
+				case 'compareCourses':
+					if($this->course_data->courseExists($_GET['compare_course'])) {
+						return CompareFactory::getInstance('Compare', $this->course_data, $_GET['compare_course']);
+					}
+					break;
+				case 'viewSavedCourses':
+					$this->viewSavedCourses();
+					break;
+				case 'removeAllSavedCourses':
+					$this->removeAllSavedCourses();
+					break;
+				case 'addCourse':
+					$courseToAdd = $value;
+					if($this->course_data->courseExists($courseToAdd)) {
+						$this->addCourse($courseToAdd);
+					} else {
+						//var_dump($this->data_set);
+						die("An error occurred.");
+					}
+					break;
+				case 'removeCourse':
+					$courseToRemove = $value;
+					$this->removeCourse($courseToRemove);
+					break;
+
+				//// var_dump($_COOKIE['saved_courses_compare']);
+			}
+
+		}
+	}
+
+	function removeCourse($courseToRemove) {
+
+		if(array_search($courseToRemove, (array)json_decode($_COOKIE['saved_courses_compare'])) !== false) {
+			$this->course_data->removeFromCookie('saved_courses_compare', $courseToRemove);
+		} else {
+			//	var_dump($_COOKIE['saved_courses_compare']);
+		}
+
+		header("Location:" . $_SERVER['HTTP_REFERER']);
+
+	}
+
+	function removeAllSavedCourses() {
+		unset($_COOKIE['saved_courses_compare']);
+		CourseData::setCookie('saved_courses_compare');
+		header("Location:" . $_SERVER['HTTP_REFERER']);
+	}
+
+	function viewSavedCourses() {
+
+		if(isset($_COOKIE['saved_courses_compare']) && (count((array)json_decode($_COOKIE['saved_courses_compare'])) >= 1)) {
+
+			$html = Config::getChooseCoursesContent();
+			$html .= "<p class='compare_error'>The maximum number of courses you can compare at a time is 3.</p>";
+			$html .= '<form id="course_compare_form" method="GET">';
+			$html .= '<input type="hidden" value="true" name="compareCourses">';
+
+			$saved_courses_array = (array)json_decode($_COOKIE['saved_courses_compare']);
+			unset($saved_courses_array['expiry']);
+
+			$html .= '<div class="courses_loader"><div class="fa fa-spinner fa-spin"></div></div><table class="course_compare_saved" style="width: 100%;"><tr><th>Course Name</th><th class="small_col_centered">Code</th><th class="small_col_centered">Compare</th><th class="small_col_centered">Remove</th></tr>';
+			foreach($saved_courses_array as $course_id) {
+				if($course_name = $this->courseName($course_id)) {
+					$course_url = $this->courseURL($course_id);
+					$html .= '<tr class="compare_row">';
+					$html .= '<td><label for="course-' . $course_id . '">' .($course_url!=false ? '<a href="'.$course_url.'" class="rd">'  : ''). $course_name .($course_url!=false ? '</a>'  : ''). '</label></td>';
+					$html .= '<td class="small_col_centered"><span class="saved_coures_code">' . $this->course_data->getCol($course_id, 'courseCode') . '</span></td>';
+					$html .= '<td class="small_col_centered"><input type="checkbox" id="course-' .$course_id . '" name="compare_course[]" value="' . $course_id . '"></td>';
+					$html .= '<td class="small_col_centered course_compare_remove"><a href="' . Config::$course_compare_link . '?removeCourse=' .$course_id . '" class="course-' .$course_id . '"><span class="fa fa-times"></span></a></td>';
+					$html .= '</tr>';
+				}
+			}
+			$html .= '</table>';
+			$html .= '<a href="' . Config::$course_search_link . '" class="button add-more-courses" type="button">Add More Courses</a>';
+			$html .= '<input class="button disabled" type="submit" value="Compare Selected Courses"></form>';
+
+			HTMLOutputter::addHTML($html);
+
+		} else {
+			$html =Config::$no_courses_message;
+			$html .= '<a href="' . Config::$course_search_link . '" class="button add-more-courses" type="button">Add More Courses</a>';
+			HTMLOutputter::addHTML( $html );
+		}
+	}
+
+	function addCourse($courseToAdd) {
+
+		$this->course_data->setCookie('saved_courses_compare');
+
+		if(array_search($courseToAdd, (array)json_decode($_COOKIE['saved_courses_compare'])) === false) {
+			if($this->course_data->courseExists($courseToAdd)) {
+				$this->course_data->addToCookie('saved_courses_compare', $courseToAdd);
+				// $_COOKIE['saved_courses_compare'][] = $courseToAdd;
+			}
+		}
+
+		header("Location:" . $_SERVER['HTTP_REFERER']);
+	}
+
+	function courseName($course_id) {
+
+
+		if(isset($this->course_data->data_set[$course_id]['courseName'])) {
+			return $this->course_data->data_set[$course_id]['courseName'];
+		}
+
+		return false;
+
+	}
+
+	function courseURL($course_id) {
+
+
+		if(isset($this->course_data->data_set[$course_id]['courseURL'])) {
+			return $this->course_data->data_set[$course_id]['courseURL'];
+		}
+
+		return false;
+
+	}
+
+}
+
+
+class Compare {
+
+	public $course_data;
+
+	function __construct($course_data, $course_selections) {
+
+		$this->course_data = $course_data;
+
+		if(is_array($course_selections) and !empty($course_selections) && count($course_selections) >= 2) {
+			$this->compare_courses($course_selections);
+		} else {
+			HTMLOutputter::addHTML( 'You must choose more than one course to compare.' );
+		}
+
+	}
+
+	public function compare_courses($course_selections) {
+
+		$cols_to_show = Config::getColNodesToShow();
+		$col_headings = Config::getColHeadingsToShow();
+
+		$html = "<div class='row'>";
+		$html .= "<div class='column small-12 medium-12'>";
+
+		$html .= Config::getComparisonPageContent();
+
+		$html .= "</div><div class='column small-12 medium-6 text-left'>";
+		$html .= "<a class='button view_saved_c_btn' href='" . Config::$course_compare_link . "'>Back to Saved Courses</a></div>";
+
+		$html .= <<<HTML
+		<div class='column small-12 medium-6 expand-container text-right'>
+			<a href='#' class='button excol expand-all'><span class='fa fa-expand'></span> Expand All</a>
+			<a href='#' class='button excol collapse-all hidden'><span class='fa fa-compress'></span> Collapse All</a>
+		</div>
+HTML;
+		$html .= '</div>';
+		$html .= "<p>You are currently comparing the following courses: ";
+
+		$course_selects_count = 1;
+		if(count($course_selections) > 0 ) {
+			$html .= "<ul class='course-compare-list'>";
+			foreach($course_selections as $course_id) {
+				$html .= "<li><a href='" .  $this->course_data->data_set[$course_id]['courseURL'] . "'>" . $this->course_data->data_set[$course_id]['courseName'] . "</a></li>";
+
+
+				$course_selects_count++;
+			}
+			$html .= "</ul>";
+		}
+		$html .= '</p>';
+
+		
+
+		$html .= '<dl class="accordion course_compare_accordion" data-accordion>';
+		$html .= '<dt class="hidden">Course Details</dt>';
+
+		$rand_array = array();
+
+		foreach($col_headings as $index => $heading) {
+
+			$loop = true;
+			while($loop) {
+				$rand_val = rand(100, 999);
+				if(!isset($rand_array[$rand_val])) {
+					$rand_array[$rand_val] = '';
+					$loop = false;
+				}
+			}
+
+			$html .= '<dd class="accordion-navigation">
+							<a href="#item-' . $rand_val . '">' . $heading . '</a>
+							<div id="item-' . $rand_val . '" class="content">
+
+							<table class="responsive cc-compare-table">
+								<tr>';
+			foreach($course_selections as $course_id) {
+				$html .= "<th class=\"cc-data\"><a href='".  $this->course_data->data_set[$course_id]['courseURL'] . "'>". $this->course_data->data_set[$course_id]['courseName'] . "</a></th>";
+			}
+			$html .= '</tr>';
+	          
+			foreach($course_selections as $course_id) {
+              
+				$col = $cols_to_show[$index];
+
+				if(isset($this->course_data->data_set[$course_id][$col]) && !empty($this->course_data->data_set[$course_id][$col])) {
+					$html .= '<td class="cc-data">' . $this->course_data->data_set[$course_id][$col] . '</td>';
+				} else {
+					$html .= '<td class="cc-data">Data not available</td>';
+				}
+			}
+			$html .='</table></div></dd>';
+		}
+
+		$html .= '</dl>';
+
+
+		$html .= "<div class='small-12 medium-6'><a class='button view_saved_c_btn' href='" . Config::$course_compare_link . "'>Back to Saved Courses</a></div>";
+
+
+		HTMLOutputter::addHTML($html);
+
+	}
+}
+
+
+if(isset($_GET["ajax"])  && $_GET["ajax"] == "on"){
+	die();
+}
+
+?>

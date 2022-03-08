@@ -1,0 +1,15 @@
+<div class="featured-article feature-box">
+  <a href="<t4 type="content" name="Title" output="fulltext" use-element="true" filename-element="Title" modifiers="striptags,htmlentities" />">
+    <t4 type="content" name="Article Banner Image" output="selective-output" process-format="true" format="<!--" />
+    <img src="<t4 type="media" formatter="path/*" id="4817" />" alt="news-city-at-night" />
+    <t4 type="content" name="Article Banner Image" output="selective-output" process-format="true" format="-->" />
+    <t4 type="content" name="Article Banner Image" output="selective-output" process-format="true" format="<img src=&quot;<t4 type=&quot;content&quot; name=&quot;Article Banner Image&quot; output=&quot;normal&quot; formatter=&quot;path/*&quot; />&quot; alt=&quot;<t4 type=&quot;content&quot; name=&quot;Title&quot; output=&quot;normal&quot; modifiers=&quot;striptags,htmlentities&quot; />&quot; />" />
+    <div class="text-content">
+        <span class="card-heading"><t4 type="content" name="Title" output="normal" modifiers="striptags,htmlentities" /></span>
+        <t4 type="content" name="Article Categories" output="selective-output" process-format="true" format="<span class=&quot;card-category&quot;><span class=&quot;fa fa-book&quot;></span><t4 type=&quot;content&quot; name=&quot;Article Categories&quot; output=&quot;normal&quot; display_field=&quot;name&quot; delimiter=&quot;&nbsp;/&nbsp;&quot;/></span>" />
+        <t4 type="content" name="Teaser" output="selective-output" process-format="true" format="<span class=&quot;card-description&quot;>$value</span>" />
+        <span class="card-date"><t4 type="content" name="Publish date" output="normal" date_format="MMM dd, yyyy" /></span>
+        <button class="button">Read More</button>
+    </div>
+  </a>
+</div>

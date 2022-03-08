@@ -1,0 +1,16 @@
+<div class="row course-charts">
+    <div class="small-12 columns">
+        <div class="panel callout">
+            <div class="row">
+                <div class="small-12 medium-6 columns">
+                    <canvas id="chart-employed" width="300" height="300"></canvas>
+                    <p><t4 type="content" name="Employed Graduates Description" output="normal" modifiers="striptags, htmlentities"  /></p>
+                </div>
+                <div class="small-12 medium-6 columns">
+                    <canvas id="chart-breakdown" width="300" height="300"></canvas>
+                    <p><t4 type="content" name="Program Breakdown Description" output="normal" modifiers="striptags, htmlentities"  /></p>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.small-12 columns -->
+</div><!-- /.row -->

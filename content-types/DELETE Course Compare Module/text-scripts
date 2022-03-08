@@ -1,0 +1,17 @@
+<script>
+			$('.collapse-all').hide();
+			$('.expand-all').click(function() {
+				$('.accordion-navigation').addClass('active');
+				$('.accordion-navigation>div').addClass('active');
+				$('.button.excol').toggle();
+
+				return false;
+			});
+			$('.collapse-all').click(function() {
+				$('.accordion-navigation').removeClass('active');
+				$('.accordion-navigation>div').removeClass('active');
+				$('.button.excol').toggle();
+
+				return false;
+			});
+		</script>

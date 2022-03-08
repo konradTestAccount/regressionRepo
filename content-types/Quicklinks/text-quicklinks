@@ -1,0 +1,36 @@
+      <div class="large-12 medium-12 panel quicklinks columns is-hidden" id="QL-<t4 type="content" name="Cookie Preference" output="selective-output" modifiers="" process-format="true" format="$value" />"><!-- panel quicklinks -->
+
+        <t4 type="content" name="Main Heading" output="selective-output" modifiers="" process-format="true" format="<h3>$value</h3>" />
+
+        <ul class="side-nav">
+           <t4 type="content" name="Link 1 Text" output="selective-output" modifiers="" process-format="true" format="
+	      	<li>
+				<a href=&quot;<t4 type=&quot;content&quot; name=&quot;Link 1 Internal&quot; output=&quot;linkurl&quot; modifiers=&quot;medialibrary, nav_sections&quot;  /><t4 type=&quot;content&quot; name=&quot;Link 1 External&quot; output=&quot;normal&quot; modifiers=&quot;medialibrary, nav_sections&quot;  />&quot; <t4 type=&quot;content&quot; name=&quot;Link 1 External&quot; output=&quot;selective-output&quot; modifiers=&quot;&quot; format=&quot;target='_blank'&quot; />>$value</a>
+			</li>
+		" />
+
+		<t4 type="content" name="Link 2 Text" output="selective-output" modifiers="" process-format="true" format="
+	      	<li>
+				<a href=&quot;<t4 type=&quot;content&quot; name=&quot;Link 2 Internal&quot; output=&quot;linkurl&quot; modifiers=&quot;medialibrary, nav_sections&quot;  /><t4 type=&quot;content&quot; name=&quot;Link 2 External&quot; output=&quot;normal&quot; modifiers=&quot;medialibrary, nav_sections&quot;  />&quot; <t4 type=&quot;content&quot; name=&quot;Link 2 External&quot; output=&quot;selective-output&quot; modifiers=&quot;&quot; format=&quot;target='_blank'&quot; />>$value</a>
+			</li>
+		" />
+
+      	<t4 type="content" name="Link 3 Text" output="selective-output" modifiers="" process-format="true" format="
+	      	<li>
+				<a href=&quot;<t4 type=&quot;content&quot; name=&quot;Link 3 Internal&quot; output=&quot;linkurl&quot; modifiers=&quot;medialibrary, nav_sections&quot;  /><t4 type=&quot;content&quot; name=&quot;Link 3 External&quot; output=&quot;normal&quot; modifiers=&quot;medialibrary, nav_sections&quot;  />&quot; <t4 type=&quot;content&quot; name=&quot;Link 3 External&quot; output=&quot;selective-output&quot; modifiers=&quot;&quot; format=&quot;target='_blank'&quot; />>$value</a>
+			</li>
+		" />
+
+      	<t4 type="content" name="Link 4 Text" output="selective-output" modifiers="" process-format="true" format="
+	      	<li>
+				<a href=&quot;<t4 type=&quot;content&quot; name=&quot;Link 4 Internal&quot; output=&quot;linkurl&quot; modifiers=&quot;medialibrary, nav_sections&quot;  /><t4 type=&quot;content&quot; name=&quot;Link 4 External&quot; output=&quot;normal&quot; modifiers=&quot;medialibrary, nav_sections&quot;  />&quot; <t4 type=&quot;content&quot; name=&quot;Link 4 External&quot; output=&quot;selective-output&quot; modifiers=&quot;&quot; format=&quot;target='_blank'&quot; />>$value</a>
+			</li>
+		" />
+
+		<t4 type="content" name="Link 5 Text" output="selective-output" modifiers="" process-format="true" format="
+	      	<li>
+				<a href=&quot;<t4 type=&quot;content&quot; name=&quot;Link 5 Internal&quot; output=&quot;linkurl&quot; modifiers=&quot;medialibrary, nav_sections&quot;  /><t4 type=&quot;content&quot; name=&quot;Link 5 External&quot; output=&quot;normal&quot; modifiers=&quot;medialibrary, nav_sections&quot;  />&quot; <t4 type=&quot;content&quot; name=&quot;Link 5 External&quot; output=&quot;selective-output&quot; modifiers=&quot;&quot; format=&quot;target='_blank'&quot; />>$value</a>
+			</li>
+		" />
+        </ul>
+      </div>

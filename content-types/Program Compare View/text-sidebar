@@ -1,0 +1,55 @@
+<?php
+try {
+    /* Version 2.1 */
+    $currentPosition    = 'text/sidebar';
+    $requiredPosition   = '<t4 type="content" name="Position in the page" output="normal" display_field="value" />';
+    $configUrlCompare   = '<t4 type="content" name="PHP Program Course Compare Link" output="linkurl" modifiers="nav_sections" />';
+   
+    
+    if ($configUrlCompare == '') {
+        $configUrlCompare   = __DIR__;
+    } else {
+        $configUrlCompare   = $_SERVER['DOCUMENT_ROOT']  . $configUrlCompare;
+    }
+
+    @include_once($configUrlCompare . '/config.php');
+    if (preg_match("/t4_([0-9]{16,20}+)\.php/Ui", $_SERVER['REQUEST_URI'], $output_array)) {
+        throw new Exception("Sorry, Course Search is not available in preview.");
+    }
+
+    if ($errorCC != []) {
+        throw new Exception(implode('<br />', $errorCC), 1);
+    }
+
+    if (!isset($documentCollectionCourseCompare)) {
+        throw new Exception("Sorry, There are issue in the configuration.", 1);
+    }
+
+    if ($requiredPosition == '') {
+        throw new Exception("Please select a Position in the page", 1);
+    }
+
+    if ($currentPosition  == $requiredPosition) {
+        $mainLibraryUrlCompare = str_replace($_SERVER['DOCUMENT_ROOT'], '', $configUrlCompare); ?>
+        
+        <t4 type="content" name="View" output="normal" formatter="inline/*" />
+        
+        
+        <?php
+    }
+} catch (\UnderflowException $eCourseCompare) {
+    $errorCC[] = $eCourseCompare->getMessage();
+} catch (\RuntimeException $eCourseCompare) {
+    $errorCC[] = $eCourseCompare->getMessage();
+} catch (\InvalidArgumentException $eCourseCompare) {
+    $errorCC[] = $eCourseCompare->getMessage();
+} catch (\LengthException $eCourseCompare) {
+    $errorCC[] = $eCourseCompare->getMessage();
+} catch (\Exception $eCourseCompare) {
+    $errorCC[] = $eCourseCompare->getMessage();
+}
+
+if (!empty($errorCC)) {
+    echo '<div class="eventCalError" style="background:rgb(250,200,200); padding: 1em; border: 1px solid rgb(180,20,20); border-radius: 3px; margin-bottom: 1em;color: rgb(130,20,20)">'.implode('<br />', $errorCC).'</div>';
+}
+?>

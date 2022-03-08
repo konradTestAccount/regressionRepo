@@ -1,0 +1,40 @@
+<div class="row">
+    <t4 type="content" output="selective-output" modifiers="" name="Profile Image" format="<div class=&quot;small-12 large-4 columns text-center staff-image&quot;>$value</div>" />
+    <!--
+    <t4 type="content" output="selective-output" modifiers="" name="Profile Image" format="-->" />
+    <div class="small-12 large-8 columns">
+    <t4 type="content" output="selective-output" modifiers="" name="Profile Image" format="<!--" />
+    -->
+    <t4 type="content" output="selective-output" modifiers="" name="Profile Image" format="<!--" />
+    <div class="small-12 columns">
+    <t4 type="content" output="selective-output" modifiers="" name="Profile Image" format="-->" />
+
+        <h2><t4 type="content" name="First name" output="normal" modifiers="striptags"  /> <t4 type="content" name="Last name" output="normal" modifiers="striptags"  /><br><small><t4 type="content" name="Type" output="normal" modifiers="striptags"  /></small></h2>
+        <table style="width: 100%;">
+            <tr><td>Email</td><td><a href="mailto:<t4 type="content" name="Email Address" output="normal" modifiers="encode_emails"  />"><t4 type="content" name="Email Address" output="normal" modifiers="encode_emails"  /></a></td></tr>
+            <t4 type="content" output="selective-output" modifiers="" name="Department" format="<tr><td>Department</td><td>$value</td></tr>" />
+            <t4 type="content" output="selective-output" modifiers="" name="Phone Number" format="<tr><td>Phone</td><td><a href='tel:$value'>$value</a></td></tr>" />
+        </table>
+
+        <!--<span class="label success">Available</span>
+        <span class="label alert">Not Available</span>-->
+        <t4 type="content" output="selective-output" modifiers="" name="Contactable Hours" format="<div class='panel callout'><h3>Contactable Hours</h3>$value</div>" />
+    </div>
+
+    <div class="small-12 columns">
+        <hr>
+        <dl class="tabs" data-tab>
+            <dd class="active"><a href="#panel1">Biography</a></dd>
+            <t4 type="content" output="selective-output" modifiers="" name="Publications" format="<dd><a href='#panel2'>Publications</a></dd>" />
+            <t4 type="content" output="selective-output" modifiers="" name="Research" format="<dd><a href='#panel3'>Research</a></dd>" />
+        </dl>
+        <div class="tabs-content">
+            <div class="content active" id="panel1">
+                <t4 type="content" name="Biography" output="normal" modifiers="medialibrary, nav_sections"  />
+            </div>
+            <t4 type="content" output="selective-output" modifiers="medialibrary, nav_sections" name="Publications" format="<div class='content' id='panel2'>$value</div>" />
+            <t4 type="content" output="selective-output" modifiers="medialibrary, nav_sections" name="Research" format="<div class='content' id='panel3'>$value</div>" />
+        </div>
+    </div>
+
+</div>

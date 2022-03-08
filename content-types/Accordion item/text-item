@@ -1,0 +1,6 @@
+  <dd class="accordion-navigation">
+    <a href="#item-<t4 type="meta" meta="content_id" />"><t4 type="content" name="Item Title" output="normal" modifiers=""  /></a>
+    <div id="item-<t4 type="meta" meta="content_id" />" class="content">
+      <t4 type="content" name="Item Content" output="normal" modifiers="medialibrary, nav_sections"  />
+    </div>
+  </dd>

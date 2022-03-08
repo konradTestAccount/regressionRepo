@@ -1,0 +1,11 @@
+<section class="hero-wrapper">
+	<header class="hero-header" >
+		<figure>
+			<t4 type="content" name="Image" output="normal" enable-dedit="false" formatter="image/normal" />
+          	<t4 type="content" name="Main heading" output="selective-output" process-format="true" format="<figcaption>
+            	<h2><t4 type=&quot;content&quot; name=&quot;Main heading&quot; output=&quot;normal&quot; modifiers=&quot;striptags,htmlentities&quot; /></h2>
+                <t4 type=&quot;content&quot; name=&quot;Sub heading&quot; output=&quot;selective-output&quot; enable-dedit=&quot;false&quot; process-format=&quot;true&quot; format=&quot;<h3>$value</h3>&quot; />
+          	</figcaption>" />
+      	</figure>
+	</header>
+</section>

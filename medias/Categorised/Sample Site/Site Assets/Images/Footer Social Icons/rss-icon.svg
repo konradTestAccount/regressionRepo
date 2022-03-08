@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generator: Adobe Illustrator 15.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   id="Icons"
+   x="0px"
+   y="0px"
+   width="100px"
+   height="100px"
+   viewBox="0 0 100 100"
+   style="enable-background:new 0 0 100 100;"
+   xml:space="preserve"
+   inkscape:version="0.48.2 r9819"
+   sodipodi:docname="rss-icon_2.svg"
+   inkscape:export-filename="C:\Users\michael mason\Working\NUIG\PSDEV-\PS_Objectives\SampleData\News_rss\rss-icon_2.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90"><metadata
+   id="metadata4368"><rdf:RDF><cc:Work
+       rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
+   id="defs4366" /><sodipodi:namedview
+   pagecolor="#ffffff"
+   bordercolor="#666666"
+   borderopacity="1"
+   objecttolerance="10"
+   gridtolerance="10"
+   guidetolerance="10"
+   inkscape:pageopacity="0"
+   inkscape:pageshadow="2"
+   inkscape:window-width="1920"
+   inkscape:window-height="1148"
+   id="namedview4364"
+   showgrid="false"
+   inkscape:zoom="2.36"
+   inkscape:cx="-18.644068"
+   inkscape:cy="50"
+   inkscape:window-x="-8"
+   inkscape:window-y="-8"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="Icons" />
+
+<circle
+   sodipodi:ry="48"
+   sodipodi:rx="48"
+   sodipodi:cy="50"
+   sodipodi:cx="50"
+   class="outer-shape"
+   cx="50"
+   cy="50"
+   r="48"
+   style="fill:#990616;fill-opacity:1"
+   id="circle3020" /><path
+   id="RSS"
+   d="m 40.33356,59.041805 c 1.017333,1.015934 1.636133,2.394467 1.639866,3.929333 -0.0037,1.532067 -0.622533,2.9106 -1.636132,3.922799 l -0.0037,0.0018 c -1.015467,1.0108 -2.4024,1.628666 -3.944733,1.628666 -1.540466,0 -2.924133,-0.619733 -3.939132,-1.630534 -1.012658,-1.011691 -1.636124,-2.388824 -1.636124,-3.922758 0,-1.534866 0.623466,-2.916666 1.636134,-3.930732 v 0.0014 c 1.015465,-1.011733 2.399132,-1.634266 3.939132,-1.634266 1.542334,0 2.927867,0.623933 3.944733,1.634266 z m 0,-0.0014 v 0.0014 c 0.0018,0 0.0018,0 0.0018,0 l -0.0018,-0.0014 z m -7.883865,7.855399 c 0,0 0,0 0,-0.0018 -0.0018,0 -0.0018,0 -0.0018,0 l 0.0018,0.0018 z M 30.818228,40.85814 v 8.019667 c 5.235533,0.0033 10.187332,2.059866 13.893131,5.771266 3.704867,3.699733 5.753067,8.658999 5.761467,13.912732 h 0.0028 v 0.01446 h 8.0528 C 58.521926,60.936938 55.416692,54.017206 50.396293,48.993073 45.374959,43.969873 38.458027,40.862808 30.818228,40.85814 z m 0.01447,-14.281864 v 8.015932 c 18.715198,0.01353 33.928996,15.251132 33.941596,33.984063 H 72.81356 C 72.807957,56.998272 68.10209,46.50854 60.496824,38.898141 52.889225,31.290075 42.406493,26.581409 30.832695,26.576276 z"
+   inkscape:connector-curvature="0"
+   style="fill:#ffffff;fill-opacity:1" /></svg>

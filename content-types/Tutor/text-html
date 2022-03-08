@@ -1,0 +1,5 @@
+<div class="small-12 medium-6 columns">
+  <p><strong>First name:</strong> <t4 type="content" name="Tutors first name" output="normal" /></p>
+  <p><strong>Last name:</strong> <t4 type="content" name="Tutors last name" output="normal" /></p>
+  <t4 type="content" name="Tutors qualifications" output="selective-output" modifiers="medialibrary, nav_sections" process-format="true" format="$value" />
+</div>

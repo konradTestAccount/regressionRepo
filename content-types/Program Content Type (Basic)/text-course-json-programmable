@@ -1,0 +1,38 @@
+try{
+		importClass(com.terminalfour.publish.utils.BrokerUtils);
+  		var esc = org.apache.commons.lang.StringEscapeUtils;
+
+  		function escapeCharacters(originalContent) {
+
+			var content 		= originalContent;
+			var escapedContent  = esc.escapeJava(content);
+
+			return escapedContent;
+		}
+  
+  document.write(
+			'{' +
+				'"contentID": "' + escapeCharacters(BrokerUtils.processT4Tags (dbStatement, publishCache, section, content, language, isPreview, '<t4 type="meta" meta="content_id" />')) + '",' +
+				'"courseName": "' + escapeCharacters(BrokerUtils.processT4Tags (dbStatement, publishCache, section, content, language, isPreview, '<t4 type="content" name="Course Name" output="normal" modifiers="striptags"  />')) + '",' +
+				'"courseOverview": "' + escapeCharacters(BrokerUtils.processT4Tags (dbStatement, publishCache, section, content, language, isPreview, '<t4 type="content" name="Course overview" output="normal" modifiers="striptags,htmlentities" />')) + '",' +
+				'"courseLocation": "' + escapeCharacters(BrokerUtils.processT4Tags (dbStatement, publishCache, section, content, language, isPreview, '<t4 type="content" name="Course Location" output="normal" modifiers="striptags"  />')) + '",' +
+				'"courseType": "' + escapeCharacters(BrokerUtils.processT4Tags (dbStatement, publishCache, section, content, language, isPreview, '<t4 type="content" name="Course Type" output="normal" modifiers="striptags"  />')) + '",' +
+				'"courseCode": "' + escapeCharacters(BrokerUtils.processT4Tags (dbStatement, publishCache, section, content, language, isPreview, '<t4 type="content" name="Course Code" output="normal" modifiers="striptags"  />')) + '",' +
+				'"courseDuration": "' + escapeCharacters(BrokerUtils.processT4Tags (dbStatement, publishCache, section, content, language, isPreview, '<t4 type="content" name="Course Duration" output="normal" modifiers="striptags"  />')) + '",' +
+				'"startingDates": "' + escapeCharacters(BrokerUtils.processT4Tags (dbStatement, publishCache, section, content, language, isPreview, '<t4 type="content" name="Starting dates" output="normal" modifiers="striptags"  />')) + '",' +
+				'"courseDepartments": "' + escapeCharacters(BrokerUtils.processT4Tags (dbStatement, publishCache, section, content, language, isPreview, '<t4 type="content" name="Department" output="normal" modifiers="striptags"  />')) + '",' +
+				'"courseFaculties": "' + escapeCharacters(BrokerUtils.processT4Tags (dbStatement, publishCache, section, content, language, isPreview, '<t4 type="content" name="Faculty" output="normal" modifiers="striptags"  />')) + '",' +
+				'"courseCost": "' + escapeCharacters(BrokerUtils.processT4Tags (dbStatement, publishCache, section, content, language, isPreview, '<t4 type="content" name="Cost" output="normal" modifiers="striptags"  />')) + '",' +
+				'"courseURL": "' + escapeCharacters(BrokerUtils.processT4Tags (dbStatement, publishCache, section, content, language, isPreview, '<t4 type="navigation" id="29"/>')) + '",' +
+				'"startDate": "' + escapeCharacters(BrokerUtils.processT4Tags (dbStatement, publishCache, section, content, language, isPreview, '<t4 type="content" name="Start Date" output="normal" modifiers="striptags"  />')) + '",' +
+				'"HTMLBasicResult": "' + escapeCharacters(BrokerUtils.processT4Tags (dbStatement, publishCache, section, content, language, isPreview, '<tr><td><a href=\'<t4 type="navigation" id="29"/>\'><t4 type="content" name="Course Name" output="normal" modifiers="striptags"  /></a></td><td><t4 type="content" name="Course Duration" output="normal" modifiers="striptags"  /></td><td><t4 type="content" name="Course Type" output="normal" modifiers="striptags"  /></td><td><t4 type="content" name="Course Code" output="normal" modifiers="striptags"  /></td><!-- BEGIN COURSE COMPARE --> <td class=\'course_compare_buttons\'> <div class=\'include add course_compare_btn column\' data-coursename=\'<t4 type="content" name="Course Name" output="normal" modifiers="striptags"  />\' data-courseurl=\'http://samplesite.terminalfour.com<t4 type="navigation" id="29"/>\'><a href=\'<t4 type="navigation" id="27" />?addCourse=<t4 type="meta" meta="content_id" />\'  class=\'save course-<t4 type="meta" meta="content_id" />\'><span class=\'fa fa-plus\'></span>&nbsp; Save</a></div><div class=\'added remove course_compare_btn column\'><a href=\'<t4 type="navigation" id="27" />?removeCourse=<t4 type="meta" meta="content_id" />\' class=\'save course-<t4 type="meta" meta="content_id" />\'><span class=\'fa fa-check\'></span>&nbsp; Saved</a></div> </td><!-- END COURSE COMPARE --></tr>')) + '", ' +
+    			'"HTMLAdvancedResult": "' + escapeCharacters(BrokerUtils.processT4Tags (dbStatement, publishCache, section, content, language, isPreview, '<div class=\'course-listing row\'><div class=\'course-listing-data column medium-9\'><div class="h3"><a href=\'<t4 type="navigation" id="29"/>\'><t4 type="content" name="Course Name" output="normal" modifiers="striptags"  /></a> <small><t4 type="content" name="Course Code" output="normal" modifiers="striptags"  /></small></div><ul class=\'no-bullet\'><li><span>Level</span>: <t4 type="content" name="Course Type" output="normal" modifiers="striptags"  /></li><li><span>Duration</span>: <t4 type="content" name="Course Duration" output="normal" modifiers="striptags"  /></li><li><span>Campus</span>: <a class="reload-search" href=\"?courseLocation=<t4 type="content" name="Course Location" output="normal" modifiers="striptags"  />\"><t4 type="content" name="Course Location" output="normal" modifiers="striptags"  /></a></li></ul></div><div class=\'course-listing-save column medium-3\'><!-- BEGIN COURSE COMPARE --><div class=\'course_compare_buttons\'><div class=\'include add course_compare_btn column advanced-search\'><a href=\'<t4 type="navigation" id="27" />?addCourse=<t4 type="meta" meta="content_id" />\' class=\'save course-<t4 type="meta" meta="content_id" />\'><span class=\'fa fa-plus\'></span>&nbsp; Save</a></div><div class=\'added remove course_compare_btn column advanced-search\'><a href=\'<t4 type="navigation" id="27" />?removeCourse=<t4 type="meta" meta="content_id" />\' class=\'save course-<t4 type="meta" meta="content_id" />\'><span class=\'fa fa-check\'></span>&nbsp; Saved</a></div></div><!-- END COURSE COMPARE --></div></div>')) + '"' +
+              '},'
+			); //end doc write
+  
+	} catch(err){
+      
+      document.write('{"Error": ' + err + '},');
+      document.write(err);
+      
+    }

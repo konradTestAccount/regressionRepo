@@ -1,0 +1,9 @@
+<section class="latest-news row">
+  <div class="content-row">
+    <t4 type="content" name="Section Heading" output="selective-output" process-format="true" format="<h2>$value</h2>" />
+    <t4 type="navigation" name="Newsroom Featured Article" id="227" />
+    <div class="featured-listing feature-box">
+      <t4 type="navigation" name="Newsroom Featured Articles - List" id="231" />
+    </div>
+  </div>
+</section>

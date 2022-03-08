@@ -1,0 +1,255 @@
+<div class="row with-margin">
+    <div class="small-12 columns">
+        <div class="course-header">
+            <t4 type="content" name="Program Image" output="normal" modifiers="medialibrary, nav_sections"  />
+            <h2 class="h1"><t4 type="content" name="Program Name" output="normal" modifiers="medialibrary, nav_sections"  /></h2>
+        </div>
+    </div>
+</div>
+
+
+<div class="row with-margin">
+    <div class="small-12 columns">
+
+
+<!-- side bar course info -->
+<div class="row course-info">
+
+    <t4 type="content" name="Program Code" output="selective-output" modifiers="" process-format="true" format="
+          <div class=&quot;small-12 medium-6 columns&quot;>
+                <p><strong>Program Code:</strong> $value</p>
+          </div>
+     " />
+
+     <t4 type="content" name="Program Type" output="selective-output" modifiers="" process-format="true" format="
+      <div class=&quot;small-12 medium-6 columns&quot;>
+                <p><strong>Program Type:</strong> $value</p>
+      </div>
+     " />
+          <t4 type="content" name="Department" output="selective-output" modifiers="" process-format="true" format="
+          <div class=&quot;small-12 medium-6 columns&quot;>
+                <p><strong>Department:</strong> $value</p>
+          </div>
+     " /> 
+          <t4 type="content" name="Faculty" output="selective-output" modifiers="" process-format="true" format="
+          <div class=&quot;small-12 medium-6 columns&quot;>
+                <p><strong>Faculty:</strong> $value</p>
+          </div>
+     " /> 
+
+    <t4 type="content" name="Accreditation" output="selective-output" modifiers="" process-format="true" format="
+          <div class=&quot;small-12 medium-6 columns&quot;>
+                 <p><strong>Accreditation:</strong> $value</p>
+          </div>
+     " />
+    <t4 type="content" name="Program Duration" output="selective-output" modifiers="" process-format="true" format="
+          <div class=&quot;small-12 medium-6 columns&quot;>
+                <p><strong>Program Duration:</strong> $value</p>
+          </div>
+     " /> 
+     <t4 type="content" name="Program Location" output="selective-output" modifiers="" process-format="true" format="
+          <div class=&quot;small-12 medium-6 columns&quot;>
+                <p><strong>Program Location:</strong> $value</p>
+          </div>
+     " /> 
+     <t4 type="content" name="Starting Dates" output="selective-output" modifiers="" process-format="true" format="
+          <div class=&quot;small-12 medium-6 columns&quot;>
+                <p><strong>Starting Dates:</strong> $value</p>
+          </div>
+     " /> 
+     <t4 type="content" name="Contact email" output="selective-output" modifiers="" process-format="true" format="
+          <div class=&quot;small-12 medium-6 columns&quot;>
+                <p><strong>Contact email:</strong> $value</p>
+          </div>
+     " /> 
+
+
+ </div> <!-- end course info row -->
+ <!-- ./side bar course info -->
+
+
+        <!-- Notification -->
+        <div class="panel notification">
+             <t4 type="content" name="Display Generic Notification?" output="selective-output" modifiers="" process-format="true" format="
+                <t4 type=&quot;navigation&quot; id=&quot;33&quot; />
+             " />
+
+        <t4 type="content" name="Specific Notification" output="selective-output" modifiers="" process-format="true" format="<p>$value</p>" />
+
+        </div>
+        <!-- ./Notification -->
+
+        <!-- BEGIN COURSE COMPARE --> 
+     <div class="course-page">
+
+
+        <div class='add course_compare_btn view_saved_c_btn showAdd'>
+            <a href='<t4 type='navigation' id='27' />?addProgram=<t4 type="meta" meta="content_id" />' class='save button program-<t4 type="meta" meta="content_id" />'><span class='fa fa-plus'></span>&nbsp; Save this Program</a>
+        </div>
+
+        <div class='remove view_saved_c_btn course_compare_btn hideRemove'>
+            <a href='<t4 type="navigation" id="27" />?removeProgram=<t4 type="meta" meta="content_id" />' class='save button course-<t4 type="meta" meta="content_id" />'><span class='fa fa-check'></span>&nbsp; Saved</a>
+        
+        </div>
+
+
+        <a class='button view_saved_c_btn' href='<t4 type="navigation" id="27" />'><span class="fa fa-eye"></span>&nbsp; View Saved Programs</a>
+
+    </div> <!-- end course-page -->
+
+        <!-- END COURSE COMPARE -->
+
+
+                <h3>Program overview</h3>
+                <div>
+                     <t4 type="content" name="Display generic Program overview?" output="selective-output" modifiers="" process-format="true" format="
+                        <t4 type=&quot;navigation&quot; id=&quot;34&quot; />
+                     " />
+                     <t4 type="content" name="Specific Program overview" output="selective-output" modifiers="" process-format="true" format="<p>$value</p>" />
+                </div>
+        <!-- ./Program overview -->
+
+        <!-- Application Link -->
+        <t4 type="content" name="Application Link" output="selective-output" modifiers="" process-format="true" format="
+                        <div>
+                            <a class=&quot;button applicationLink&quot; href=&quot;<t4 type=&quot;content&quot; name=&quot;Application Link&quot; output=&quot;link-url&quot; modifiers=&quot;medialibrary, nav_sections&quot;  />&quot;>Application Link</a>
+                            
+                        </div>
+        " />
+        <!-- ./Application Link -->
+
+      <div class='course-home-expand'>
+  		<a href='#' class='button excol expand-all'><span class='fa fa-expand'></span> Expand All</a>
+  		<a href='#' class='button excol collapse-all'><span class='fa fa-compress'></span> Collapse All</a>
+	  </div>
+
+        <dl class="accordion" data-accordion="">
+          	<dt class="hidden">Programs Details</dt>
+            <dd>
+                <a href="#requirements">Entry Requirements</a>
+                <div id="requirements" class="content">
+
+                    <t4 type="content" name="US based entry requirements" output="selective-output" modifiers="" process-format="true" format="
+                    <h3>US based entry requirements</h3>
+                    <t4 type=&quot;navigation&quot; id=&quot;35&quot; />
+                    " />
+
+                    <t4 type="content" name="International entry requirements" output="selective-output" modifiers="" process-format="true" format="
+                    <h3>International entry requirements</h3>
+                    <t4 type=&quot;navigation&quot; id=&quot;45&quot; />
+                    " />
+
+                </div>
+            </dd>
+            <dd>
+                <a href="#schedule">Program Schedule</a>
+                <div id="schedule" class="content">
+
+                    <t4 type="content" name="Module 1 Program Schedule" output="selective-output" modifiers="" process-format="true" format="
+                    <t4 type=&quot;navigation&quot; id=&quot;46&quot; />
+                    " />
+
+                    <t4 type="content" name="Module 2 Program Schedule" output="selective-output" modifiers="" process-format="true" format="
+                    <t4 type=&quot;navigation&quot; id=&quot;47&quot; />
+                    " />
+                    <t4 type="content" name="Module 3 Program Schedule" output="selective-output" modifiers="" process-format="true" format="
+                    <t4 type=&quot;navigation&quot; id=&quot;48&quot; />
+                    " />
+
+
+                    <t4 type="content" name="Specific Program Schedule" output="selective-output" modifiers="" process-format="true" format="$value" />
+                </div>
+            </dd>
+            <!--
+            -->
+            <dd>
+                <a href="#tutors">Program Tutors</a>
+                <div id="tutors" class="content">
+ 
+                <t4 type="content" name="Specific Program Tutors Information" output="selective-output" modifiers="" process-format="true" format="$value" />
+
+                <t4 type="content" name="Display shared Tutors information?" output="selective-output" modifiers="" process-format="true" format="
+                       <ul> <t4 type=&quot;navigation&quot; id=&quot;49&quot; /></ul>
+                " />
+
+                </div>
+            </dd>
+            <!--
+            -->
+            <!--
+            -->
+            <dd>
+                <a href="#outcomes">Learning Outcomes</a>
+                <div id="outcomes" class="content">
+
+                <t4 type="content" name="Generic Learning Outcomes" output="selective-output" modifiers="" process-format="true" format="
+                       <ul> <t4 type=&quot;navigation&quot; id=&quot;50&quot; /></ul>
+                " />
+
+                <t4 type="content" name="Specific Learning Outcomes" output="selective-output" modifiers="" process-format="true" format="$value" />
+
+
+                </div>
+            </dd>
+            <!--
+            -->
+            <dd>
+                <a href="#tuition">Tuition</a>
+                <div id="tuition" class="content">
+
+                <t4 type="content" name="Display generic tuition information?" output="selective-output" modifiers="" process-format="true" format="
+                       <t4 type=&quot;navigation&quot; id=&quot;51&quot; />
+                " />
+
+                <t4 type="content" name="Domestic Tuition" output="selective-output" modifiers="" process-format="true" format="
+                       <t4 type=&quot;navigation&quot; id=&quot;52&quot; />
+                " />
+
+                <t4 type="content" name="International Tuition" output="selective-output" modifiers="" process-format="true" format="
+                        <t4 type=&quot;navigation&quot; id=&quot;53&quot; />
+                " />
+
+                <t4 type="content" name="Cost" output="selective-output" modifiers="" process-format="true" format="<p><strong>Cost: </strong>$$value</p>" />
+
+                </div>
+            </dd>
+            <!--
+            -->
+            <dd>
+                <a href="#related">Related Programs</a>
+                <div id="related" class="content">
+
+                <t4 type="content" name="Display Related Programs?" output="selective-output" modifiers="" process-format="true" format="
+                       <ul> <t4 type=&quot;navigation&quot; id=&quot;54&quot; /></ul>
+                " />
+                <t4 type="content" name="Related Programs Specific" output="selective-output" modifiers="" process-format="true" format="$value" />
+
+                </div>
+            </dd>
+            <!--
+            -->
+        </dl>
+      
+      
+      <!-- navigation object : Display Program Statistics --><t4 type="navigation" id="28"/>
+      
+    </div>
+</div>
+<script>
+if(window.$) {
+	$('.collapse-all').hide();
+		$('.expand-all').click(function() {
+	  	$('.accordion>dd').addClass('active');
+	  	$('.accordion>dd>div').addClass('active');
+	  	$('.button.excol').toggle();
+	  	return false;
+	});
+	
+	$('.collapse-all').click(function() {
+  		$('.accordion>dd').removeClass('active');
+  		$('.accordion>dd>div').removeClass('active');
+  		$('.button.excol').toggle();
+  		return false;
+	});
+}
+</script>

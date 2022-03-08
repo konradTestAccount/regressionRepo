@@ -1,0 +1,8 @@
+<div class="row">
+  <div class="small-12 columns">
+    <t4 type="content" name="Title" output="selective-output" modifiers="" process-format="true" format="<h3 class=&quot;subheader&quot;>$value</h3>" />
+    <ul class="clearing-thumbs small-block-grid-2 medium-block-grid-4 large-block-grid-6" data-clearing>
+		<t4 type="navigation" name="Get Gallery Items" id="25" />
+	</ul>
+  </div><!-- /.small-12 columns -->
+</div><!-- /.row -->

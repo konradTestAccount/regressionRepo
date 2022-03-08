@@ -1,0 +1,128 @@
+<?php
+ try {
+
+	if (preg_match("/t4_([0-9]{16,20}+)\.php/Ui", $_SERVER['REQUEST_URI'] , $output_array)){
+    	throw new Exception("<div style='background:rgb(250,200,200); padding: 1em; border: 1px solid rgb(180,20,20); border-radius: 3px; margin-bottom: 1em;color: rgb(130,20,20);line-height:1.5;'>Sorry, Course Search is not available in preview.</div>", 1);
+    }
+	mb_http_output('utf-8');
+	mb_internal_encoding('utf-8');
+
+	// Configuration Options
+	$documentsSource = '<t4 type="navigation" id="57"/>/index.json';
+
+	require_once(realpath($_SERVER['DOCUMENT_ROOT']).'<t4 type="media" id="320"/>');
+
+	// Initialise our query handler
+    try {
+    	$queryHandler = QueryHandlerFactory::getInstance('QueryHandler', $_SERVER['QUERY_STRING']);
+        $queryHandler->handleQuery();
+    } catch (RuntimeException $e) {
+        ExceptionFormatter::FormatException($e);
+    } catch (OutOfBoundsException $e) {
+        ExceptionFormatter::FormatException($e);
+    }
+
+	// Initialise our search handler and filters
+    try {
+    	$search = SearchFactory::getInstance('Search', $documentsSource);
+    } catch (RuntimeException $e) {
+        ExceptionFormatter::FormatException($e);
+    } catch (InvalidArgumentException $e) {
+        ExceptionFormatter::FormatException($e);
+    } catch (LengthException $e) {
+        ExceptionFormatter::FormatException($e);
+    }
+
+	// Instantiate the DocumentCollection
+    try {
+    	$documentCollection = DocumentCollectionFactory::getInstance('DocumentCollection', $search->getDocuments(), $search->getDocumentResults(), $queryHandler->doQuerysExist());
+    } catch (RuntimeException $e) {
+        ExceptionFormatter::FormatException($e);
+    } catch (UnderflowException $e) {
+        ExceptionFormatter::FormatException($e);
+    } catch (InvalidArgumentException $e) {
+        ExceptionFormatter::FormatException($e);
+    }
+
+	// Facets
+    try {
+    	$categoryFacet = FacetFactory::getInstance('DropdownFacet', $documentCollection, $queryHandler);
+		$levelFacet = FacetFactory::getInstance('DropdownFacet', $documentCollection, $queryHandler);
+      	$atozFacet = FacetFactory::getInstance('AtoZFacet', $documentCollection, $queryHandler);
+    } catch (RuntimeException $e) {
+        ExceptionFormatter::FormatException($e);
+    }
+?>
+
+	<div class="panel callout course-search-widget">
+  		<header>
+      	<div class="h4">Course search</div>
+      	</header>
+  		<form action="<t4 type="navigation" id="17"/>" method="get" class="sidebar-course-search">
+    		<div class="row">
+      			<div class="small-12 columns">
+        			<label for="keyword">Search
+          				<input type="text" name="keyword" id="keyword" placeholder="Enter search term" />
+        			</label>
+      			</div>
+    		</div>
+    		<div class="row">
+      			<div class="small-12 columns">
+        			<label>Search by category</label>
+          				<?php
+                        	$categoryFacet->setMember('element', 'courseDepartments');
+                        	$categoryFacet->setMember('id', 'course-category');
+                        	$categoryFacet->setMember('isFirstOptionBlank', true);
+							$categoryFacet->setMember('firstOptionText', 'All Categories');
+                        	$categoryFacet->setMember('sortingState', true);
+                        	$categoryFacet->setMember('facetSource', 'documents');
+                        	$categoryFacet->setMember('multipleValueState', true);
+                        	$categoryFacet->setMember('multipleValueSeparator', ', ');
+                        	$categoryFacet->displayFacet();
+                    	?>
+        			
+      			</div>
+      			<div class="small-12 columns">
+        			<label>Search by A-Z</label>
+                      	<?php
+							$atozFacet->setMember('element', 'courseName');
+							$atozFacet->setMember('id', 'course-a-z');
+							$atozFacet->setMember('facetSource', 'documents');
+							$atozFacet->setMember('isFirstOptionBlank', true);
+							$atozFacet->setMember('firstOptionText', 'All Courses');
+							$atozFacet->displayFacet();
+						?>
+        			
+      			</div>
+      			<div class="small-12 columns">
+        			<label>Course level</label>
+          				<?php
+                        	$levelFacet->setMember('element', 'courseType');
+                        	$levelFacet->setMember('id', 'course-level');
+                        	$levelFacet->setMember('isFirstOptionBlank', true);
+							$levelFacet->setMember('firstOptionText', 'All Courses');
+                        	$levelFacet->setMember('sortingState', true);
+                        	$levelFacet->setMember('facetSource', 'documents');
+                        	$levelFacet->setMember('multipleValueState', true);
+                        	$levelFacet->setMember('multipleValueSeparator', ', ');
+                        	$levelFacet->displayFacet();
+                    	?>
+        			
+      			</div>
+    		</div><!-- row -->
+    		<input type="submit" value="Find a course" class="button small primary expand" />
+  		</form>
+	</div><!-- /.panel -->
+<?php 
+} catch (\UnderflowException $e) {
+    ExceptionFormatter::FormatException($e);
+} catch (\RuntimeException $e) {
+    ExceptionFormatter::FormatException($e);
+} catch (\InvalidArgumentException $e) {
+    ExceptionFormatter::FormatException($e);
+} catch (\LengthException $e) {
+    ExceptionFormatter::FormatException($e);
+} catch(\Exception $e) {
+   echo $e->getMessage()."<br />"."<br />";
+}
+?>

@@ -1,0 +1,26 @@
+try {
+  //Defining main functions
+  function processTags(t4Tag) {
+    myContent = content || null;
+    return com.terminalfour.publish.utils.BrokerUtils.processT4Tags(dbStatement, publishCache, section, myContent, language, isPreview, t4Tag);
+  }
+  function getLayout(contentLayout) {
+        var tid = content.getContentTypeID();
+        formatter     = contentLayout;
+        format        = publishCache.getTemplateFormatting(dbStatement, tid, formatter);
+        formatString  = format.getFormatting();
+        return processTags(formatString);
+  }
+  var list = {};
+ 
+  list["id"] = processTags('id<t4 type="meta" meta="content_id" />');
+  list["noticetype"] = processTags('<t4 type="content" name="Notice Type" output="normal" display_field="name" />');
+  list['version'] = processTags('<t4 type="meta" meta="version" name="Name" />');
+  list['publishDate'] = processTags('<t4 type="meta" meta="publish_date" date_format="yyyy-MM-dd\'T\'HH:mm:ssZ" />');
+  list['expireDate'] = processTags('<t4 type="meta" meta="expiry_date" date_format="yyyy-MM-dd\'T\'HH:mm:ssZ" />');
+  list["html"] = getLayout('text/notice-html');
+  var jsonObj = new org.json.JSONObject(list);
+  document.write(jsonObj.toString() + ',');
+} catch(err) {
+    document.write(err);
+}

@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="snippet news-listing columns small-12">
+    <a class="clearfix" href="<t4 type="content" name="Name" output="fulltext" modifiers="medialibrary, nav_sections" use-element="true" filename-element="Title"  />">
+      <div class="date-stamp">
+        <div class="month"><t4 type="content" name="Publish date" output="normal" date_format="MMM"  />
+        </div>
+        <div class="day">
+          <t4 type="content" name="Publish date" output="normal" date_format="d"  />
+        </div>
+      </div>
+      <div class="snippet-text">
+        <h2 class="h3 title"><t4 type="content" name="Title" output="normal" modifiers="medialibrary, nav_sections"  /></h2>
+        <t4 type="content" name="Teaser" output="selective-output" process-format="true" format="<p>$value</p>" />
+      </div>
+    </a>
+  </div><!-- /.snippet -->  
+</div>

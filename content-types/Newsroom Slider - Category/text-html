@@ -1,0 +1,8 @@
+<section class="category-slider news row">
+  <t4 type="content" name="Section Heading" output="selective-output" process-format="true" format="<div class=&quot;content-row&quot;>
+    <h2>$value</h2>
+  </div>" />
+  <div class="slides content-row">
+    <t4 type="navigation" name="Newsroom - Articles by Category" id="228" />
+  </div>
+</section>

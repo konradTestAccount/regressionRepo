@@ -1,0 +1,11 @@
+<div class="small-12 medium-4 large-4 columns">
+  <div class="snippet news">
+    <a href="<t4 type="content" name="Name" output="fulltext" modifiers="medialibrary, nav_sections" use-element="true" filename-element="Title"  />">
+      <div class="date-stamp">
+        <div class="month"><t4 type="content" name="Publish date" output="normal" date_format="MMM"  /></div>
+        <div class="day"><t4 type="content" name="Publish date" output="normal" modifiers="" date_format="d"  /></div>
+      </div>
+      <p class="title"><t4 type="content" name="Title" output="normal" modifiers="medialibrary, nav_sections"  /></p>
+    </a>
+  </div>
+</div>

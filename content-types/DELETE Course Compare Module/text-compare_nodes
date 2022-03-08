@@ -1,0 +1,24 @@
+{"compare": {
+    "menuitem": [
+<t4 type="content" output="selective-output" name="Column 1" process-format="true" format="{&quot;node_title&quot;: &quot;<t4 type=&quot;content&quot; name=&quot;Column 1&quot; output=&quot;normal&quot; modifiers=&quot;&quot; display_field=&quot;value&quot; />&quot;, &quot;output_title&quot;: &quot;<t4 type=&quot;content&quot; name=&quot;Column 1&quot; output=&quot;normal&quot; modifiers=&quot;&quot; display_field=&quot;name&quot; />&quot;}," />
+
+<t4 type="content" output="selective-output" name="Column 2" process-format="true" format="{&quot;node_title&quot;: &quot;<t4 type=&quot;content&quot; name=&quot;Column 2&quot; output=&quot;normal&quot; modifiers=&quot;&quot; display_field=&quot;value&quot; />&quot;, &quot;output_title&quot;: &quot;<t4 type=&quot;content&quot; name=&quot;Column 2&quot; output=&quot;normal&quot; modifiers=&quot;&quot; display_field=&quot;name&quot; />&quot;}," />
+
+<t4 type="content" output="selective-output" name="Column 3" process-format="true" format="{&quot;node_title&quot;: &quot;<t4 type=&quot;content&quot; name=&quot;Column 3&quot; output=&quot;normal&quot; modifiers=&quot;&quot; display_field=&quot;value&quot; />&quot;, &quot;output_title&quot;: &quot;<t4 type=&quot;content&quot; name=&quot;Column 3&quot; output=&quot;normal&quot; modifiers=&quot;&quot; display_field=&quot;name&quot; />&quot;}," />
+
+<t4 type="content" output="selective-output" name="Column 4" process-format="true" format="{&quot;node_title&quot;: &quot;<t4 type=&quot;content&quot; name=&quot;Column 4&quot; output=&quot;normal&quot; modifiers=&quot;&quot; display_field=&quot;value&quot; />&quot;, &quot;output_title&quot;: &quot;<t4 type=&quot;content&quot; name=&quot;Column 4&quot; output=&quot;normal&quot; modifiers=&quot;&quot; display_field=&quot;name&quot; />&quot;}," />
+
+<t4 type="content" output="selective-output" name="Column 5" process-format="true" format="{&quot;node_title&quot;: &quot;<t4 type=&quot;content&quot; name=&quot;Column 5&quot; output=&quot;normal&quot; modifiers=&quot;&quot; display_field=&quot;value&quot; />&quot;, &quot;output_title&quot;: &quot;<t4 type=&quot;content&quot; name=&quot;Column 5&quot; output=&quot;normal&quot; modifiers=&quot;&quot; display_field=&quot;name&quot; />&quot;}," />
+
+<t4 type="content" output="selective-output" name="Column 6" process-format="true" format="{&quot;node_title&quot;: &quot;<t4 type=&quot;content&quot; name=&quot;Column 6&quot; output=&quot;normal&quot; modifiers=&quot;&quot; display_field=&quot;value&quot; />&quot;, &quot;output_title&quot;: &quot;<t4 type=&quot;content&quot; name=&quot;Column 6&quot; output=&quot;normal&quot; modifiers=&quot;&quot; display_field=&quot;name&quot; />&quot;}," />
+
+<t4 type="content" output="selective-output" name="Column 7" process-format="true" format="{&quot;node_title&quot;: &quot;<t4 type=&quot;content&quot; name=&quot;Column 7&quot; output=&quot;normal&quot; modifiers=&quot;&quot; display_field=&quot;value&quot; />&quot;, &quot;output_title&quot;: &quot;<t4 type=&quot;content&quot; name=&quot;Column 7&quot; output=&quot;normal&quot; modifiers=&quot;&quot; display_field=&quot;name&quot; />&quot;}," />
+
+<t4 type="content" output="selective-output" name="Column 8" process-format="true" format="{&quot;node_title&quot;: &quot;<t4 type=&quot;content&quot; name=&quot;Column 8&quot; output=&quot;normal&quot; modifiers=&quot;&quot; display_field=&quot;value&quot; />&quot;, &quot;output_title&quot;: &quot;<t4 type=&quot;content&quot; name=&quot;Column 8&quot; output=&quot;normal&quot; modifiers=&quot;&quot; display_field=&quot;name&quot; />&quot;}," />
+
+<t4 type="content" output="selective-output" name="Column 9" process-format="true" format="{&quot;node_title&quot;: &quot;<t4 type=&quot;content&quot; name=&quot;Column 9&quot; output=&quot;normal&quot; modifiers=&quot;&quot; display_field=&quot;value&quot; />&quot;, &quot;output_title&quot;: &quot;<t4 type=&quot;content&quot; name=&quot;Column 9&quot; output=&quot;normal&quot; modifiers=&quot;&quot; display_field=&quot;name&quot; />&quot;}," />
+
+<t4 type="content" output="selective-output" name="Column 10" process-format="true" format="{&quot;node_title&quot;: &quot;<t4 type=&quot;content&quot; name=&quot;Column 10&quot; output=&quot;normal&quot; modifiers=&quot;&quot; display_field=&quot;value&quot; />&quot;, &quot;output_title&quot;: &quot;<t4 type=&quot;content&quot; name=&quot;Column 10&quot; output=&quot;normal&quot; modifiers=&quot;&quot; display_field=&quot;name&quot; />&quot;}," />
+    ]
+  }
+}

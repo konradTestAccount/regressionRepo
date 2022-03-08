@@ -1,0 +1,10 @@
+{
+    "firstname": "<t4 type="content" name="First name" output="normal" modifiers="striptags, js-var"  />",
+    "lastname": "<t4 type="content" name="Last name" output="normal" modifiers="striptags, js-var"  />",
+    "phone": "<t4 type="content" name="Phone Number" output="normal" modifiers="striptags, js-var"  />",
+    "email": "<t4 type="content" name="Email Address" output="normal" modifiers="striptags, js-var"  />",
+    "type": "<t4 type="content" name="Type" output="normal" modifiers="striptags, js-var"  />",
+    "title": "<t4 type="content" name="Title" output="normal" modifiers="striptags, js-var"  />",
+    "department": "<t4 type="content" name="Department" output="normal" modifiers="striptags, js-var"  />",
+    "HTMLResult": "<tr><td><a href='<t4 type="content" name="Name" output="fulltext" modifiers="" use-element="true" filename-element="Name" />'><t4 type="content" name="First name" output="normal" modifiers="striptags, js-var"  /> <t4 type="content" name="Last name" output="normal" modifiers="striptags, js-var"  /></a><t4 type="content" output="selective-output" modifiers="striptags, js-var" name="Title" format="<br><small>$value</small>" /></td><td><t4 type="content" output="selective-output" modifiers="striptags, js-var" name="Type" format="$value" /></td><td><t4 type="content" output="selective-output" modifiers="striptags, js-var" name="Department" format="$value" /></td><td><t4 type="content" output="selective-output" modifiers="striptags, js-var" name="Phone Number" format="$value" /></td></tr>"
+},

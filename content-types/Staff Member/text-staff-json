@@ -1,0 +1,35 @@
+try {
+  //Defining main functions
+  function processTags(t4Tag) {
+    myContent = content || null;
+    return String(com.terminalfour.publish.utils.BrokerUtils.processT4Tags(dbStatement, publishCache, section, myContent, language, isPreview, t4Tag));
+  }
+
+  function getLayout(contentLayout) {
+        var tid = content.getContentTypeID();
+        formatter     = contentLayout;
+        format        = publishCache.getTemplateFormatting(dbStatement, tid, formatter);
+        formatString  = format.getFormatting();
+        return processTags(formatString);
+  }
+
+  var list = {};
+
+
+  list['contentID']  = processTags('<t4 type="meta" meta="content_id" />');
+  list['firstname']  = processTags('<t4 type="content" name="First name" output="normal" modifiers="striptags,htmlentities" />');
+  list['lastname']   = processTags('<t4 type="content" name="Last name" output="normal" modifiers="striptags,htmlentities" />');
+  list['phone']      = processTags('<t4 type="content" name="Phone Number" output="normal" modifiers="striptags,htmlentities" />');
+  list['email']      = processTags('<t4 type="content" name="Email Address" output="normal" modifiers="striptags,htmlentities" />');
+  list['type']       = processTags('<t4 type="content" name="Type" output="normal" display_field="value" />');
+  list['title']      = processTags('<t4 type="content" name="Title" output="normal" display_field="value" />');
+  list['department'] = processTags('<t4 type="content" name="Department" output="normal" display_field="value" />');
+
+
+  var jsonObj = new org.json.JSONObject(list);
+  document.write(jsonObj.toString() + ',');
+
+}
+catch(err) {
+	document.write(err);
+}

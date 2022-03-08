@@ -1,0 +1,6 @@
+{
+    "sectionTitle": "<t4 type="content" name="Name" output="normal" modifiers="striptags, js-var"  />",
+    "sectionParent": "<t4 type="navigation" name="Link to Section - parent" id="79" />",
+    "sectionRanges": "<t4 type="content" name="Page Ranges" output="normal" modifiers="striptags, js-var"  />",
+    "sectionParentTitle": "<t4 type="navigation" name="Prospectus – Section Full Name" id="80" />"
+},

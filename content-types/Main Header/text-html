@@ -1,0 +1,24 @@
+    <header class="site-header">
+      <div class="row">
+        <div class="small-12 small-centered medium-4 medium-uncentered large-3 columns">
+          <a href="<t4 type="navigation" id="2" />" title="Home" >
+            <img src="<t4 type="navigation" name="Site-Config Header Logo" id="198" />" alt="TERMINALFOUR Logo - Link to Home" height="123" width="100%" >
+            <span class="wai hidden">Home</span>
+          </a>
+        </div>
+        <div class="small-8 columns text-right hide-for-small-only">
+          <div class="header-links clearfix">
+            <ul class="inline-list right">
+             	<t4 type="navigation" name="Header Top Links" id="4" /><!-- header > top links -->
+             	<t4 type="navigation" name="Language Switcher" id="5" /> <!-- language switcher -->
+            </ul>
+          </div>
+          <div class="contact-links clearfix">
+            <ul class=" inline-list right">
+               <li><span class="fa fa-phone"></span> <a href="tel://<t4 type="content" name="Phone Number Link" output="normal" modifiers=""  />"><t4 type="content" name="Phone Number" output="normal" modifiers=""  /></a></li>
+              <li><span class="fa fa-envelope"></span> <a href="mailto:<t4 type="content" name="Email address Link" output="normal" modifiers="encode_emails"  />"><t4 type="content" name="Email address" output="normal" modifiers="encode_emails"  /></a></li>
+            </ul>
+          </div>
+        </div>
+      </div><!-- row -->
+    </header>

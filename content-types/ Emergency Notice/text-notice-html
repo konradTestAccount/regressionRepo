@@ -1,0 +1,13 @@
+<div class="notice <t4 type="content" name="Notice Type" output="normal" display_field="value" />" data-id="id<t4 type="meta" meta="content_id" />" data-version="<t4 type="meta" meta="version" name="Name" />">
+  <div class="row">
+    <div class="notice-body">
+      <a href="<t4 type="content" name="Name" output="fulltext" use-element="true" filename-element="Title" modifiers="striptags,htmlentities" />" id="alertTitle<t4 type="meta" meta="content_id" />">
+        <t4 type="content" name="Title" output="normal" modifiers="striptags,htmlentities" />
+      </a>
+      <a href="<t4 type="content" name="Name" output="fulltext" use-element="true" filename-element="Title" modifiers="striptags,htmlentities" />" class="button tiny" title="<t4 type="content" name="Title" output="normal" modifiers="striptags,htmlentities" />" aria-labelledby="alertTitle<t4 type="meta" meta="content_id" />">
+        Learn More
+      </a>
+      <span class="fa fa-times fa-lg" data-close="id<t4 type="meta" meta="content_id" />"></span>
+    </div>
+  </div>
+</div>

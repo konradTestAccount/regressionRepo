@@ -1,0 +1,57 @@
+importClass(com.terminalfour.publish.utils.BrokerUtils); // Needed for certain versions of SM to enable BrokerUtils
+ 
+//function which takes the inputs of the 1. string to chop, 2. the length to chop it at, 3. the text that will appear on the small version after the chop happens, 4. The class that gets applied to the text that only shows on small and 5.The class that gets applied to the text that only shows on large
+ 
+function reMarkText(myString,lengthOfString,smallClass,largeClass,breaker){
+    if(myString.length < lengthOfString){
+        return myString;
+    }
+    else{
+        var shortenedString = myString.substr(0,lengthOfString);
+        var remainingCharacters = myString.substr(lengthOfString);
+ 
+if(breaker == undefined){
+var seperator = '';
+}
+else{
+var seperator = '<span class="'+smallClass+'">' + breaker + '</span>'
+}
+ 
+        return  shortenedString + seperator + '<span class="'+ largeClass +'">' + remainingCharacters + '</span>'
+    }
+} //end function clipText
+
+function reMarkTextDesc(myString,lengthOfString,breaker){
+    if(myString.length < lengthOfString){
+        return myString;
+    }
+    else{
+        var shortenedString = myString.substr(0,lengthOfString);
+ 
+if(breaker == undefined){
+var seperator = '';
+}else{
+  seperator = breaker;
+}
+        return  shortenedString + seperator
+    }
+} //end function clipText
+ 
+ 
+/* put all the content elements in manageable variables */
+var title = BrokerUtils.processT4Tags (dbStatement, publishCache, section, content, language, isPreview, '<t4 type="content" name="Title" output="normal" modifiers="striptags, htmlentities"  />');
+
+var fullTextLink = BrokerUtils.processT4Tags (dbStatement, publishCache, section, content, language, isPreview, '<t4 type="content" name="Name" output="fulltext" modifiers="medialibrary, nav_sections" use-element="true" filename-element="Title"  />');
+var image = BrokerUtils.processT4Tags (dbStatement, publishCache, section, content, language, isPreview, '<t4 type="content" name="Home-1 thumb" output="normal" modifiers="" formatter="path/*" />');
+ 
+//some hard coded numbers to pass into the function (these could be put into the content type if you prefer)
+var lengthOfSmallTitle = 40;
+var elipsis = '...';
+var classForSmall = "small-only";
+var classForLarge = "large-only";
+ 
+//call the function on the title and on the teaser text to shorten them. Add some markup around them.
+
+document.write('<li><a href="'+ fullTextLink +'"><img src="'+image+' " alt="' + reMarkTextDesc(title,lengthOfSmallTitle,elipsis) + '" />');
+document.write('<div class="hp-2-news">' + reMarkText(title,lengthOfSmallTitle,classForSmall,classForLarge,elipsis) + '</div>');      
+document.write('</a></li>');

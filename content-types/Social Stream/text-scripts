@@ -1,0 +1,30 @@
+<script>
+jQuery(document).ready(function(e) {
+    e("#social-stream").dcSocialStream({
+        feeds: {
+            <t4 type="content" name="Twitter User ID" output="selective-output" enable-dedit="false" process-format="true" format="twitter: { id: &quot;<t4 type=&quot;content&quot; name=&quot;Twitter User ID&quot; output=&quot;normal&quot; modifiers=&quot;striptags,htmlentities&quot; />,<t4 type=&quot;content&quot; name=&quot;Twitter Handle&quot; output=&quot;normal&quot; modifiers=&quot;striptags,htmlentities&quot; />&quot; }," />
+            <t4 type="content" name="Facebook Page ID" output="selective-output" enable-dedit="false" process-format="true" format="facebook: {id: &quot;<t4 type=&quot;content&quot; name=&quot;Facebook Page ID&quot; output=&quot;normal&quot; modifiers=&quot;striptags,htmlentities&quot; />&quot;,intro:&quot;Posted to wall&quot; ,out: &quot;intro,title,thumb,text,user,share&quot;}," />
+            <t4 type="content" name="YouTube Channel User " output="selective-output" enable-dedit="false" process-format="true" format="youtube: {id: &quot;<t4 type=&quot;content&quot; name=&quot;YouTube Channel User &quot; output=&quot;normal&quot; modifiers=&quot;striptags,htmlentities&quot; />&quot;}," />
+            <t4 type="content" name="Flickr ID" output="selective-output" enable-dedit="false" process-format="true" format="flickr: {id: &quot;<t4 type=&quot;content&quot; name=&quot;Flickr ID&quot; output=&quot;normal&quot; modifiers=&quot;striptags,htmlentities&quot; />&quot;,intro: &quot;Uploaded&quot;,out: &quot;intro,thumb,title,text,share&quot;}," />
+            <t4 type="content" name="RSS Feed URL" output="selective-output" enable-dedit="false" process-format="true" format="rss: {id: &quot;<t4 type=&quot;content&quot; name=&quot;RSS Feed URL&quot; output=&quot;normal&quot; modifiers=&quot;striptags,htmlentities&quot; />&quot;,intro: &quot;Posted&quot;,out: &quot;title,share&quot;,text: &quot;<t4 type=&quot;content&quot; name=&quot;RSS Feed Name&quot; output=&quot;normal&quot; modifiers=&quot;striptags,htmlentities&quot; />&quot;}," />
+            <t4 type="content" name="Vimeo Channel User" output="selective-output" enable-dedit="false" process-format="true" format="vimeo: {id: &quot;<t4 type=&quot;content&quot; name=&quot;Vimeo Channel User&quot; output=&quot;normal&quot; modifiers=&quot;striptags,htmlentities&quot; />&quot;,feed: &quot;all_videos&quot;}," />
+            <t4 type="content" name="Instagram User ID" output="selective-output" enable-dedit="false" process-format="true" format="instagram: {id: &quot;!<t4 type=&quot;content&quot; name=&quot;Instagram User ID&quot; output=&quot;normal&quot; modifiers=&quot;striptags,htmlentities&quot; />&quot;,accessToken: &quot;<t4 type=&quot;content&quot; name=&quot;Instagram Access Token&quot; output=&quot;normal&quot; modifiers=&quot;striptags,htmlentities&quot; />&quot;,clientId: &quot;<t4 type=&quot;content&quot; name=&quot;Instagram Client ID&quot; output=&quot;normal&quot; modifiers=&quot;striptags,htmlentities&quot; />&quot;}" />
+        },
+        rotate: {
+            direction: "up",
+            delay: 0
+        },
+        control: true,
+        filter: true,
+        wall: true,
+        cache: false,
+        days: <t4 type="content" name="Age Limit" output="normal" modifiers="striptags,htmlentities" />,
+        limit: <t4 type="content" name="Content Limit" output="normal" modifiers="striptags,htmlentities" />,
+        max: "limit",
+        iconPath: "",
+        imagePath: ""
+    })
+})
+</script>
+<t4 type="media" id="440" formatter="text/javascript"/>
+<t4 type="media" id="441" formatter="text/javascript"/>

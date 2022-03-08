@@ -1,0 +1,23 @@
+<div class="social clearfix">
+
+              <t4 type="content" name="Facebook Link" output="selective-output" modifiers="" process-format="true" format="
+              <a href=&quot;<t4 type=&quot;content&quot; name=&quot;Facebook Link&quot; output=&quot;normal&quot; modifiers=&quot;&quot;  />&quot;>
+                
+                  <img src=&quot;<t4 type=&quot;media&quot; id=&quot;185&quot; formatter=&quot;path/*&quot; />&quot; alt=&quot;Facebook Page&quot; width=&quot;48&quot; height=&quot;48&quot; >
+                <span class=&quot;wai hidden&quot;>Facebook</span>
+              </a>" />
+              <t4 type="content" name="Twitter Link" output="selective-output" modifiers="" process-format="true" format="
+              <a href=&quot;<t4 type=&quot;content&quot; name=&quot;Twitter Link&quot; output=&quot;normal&quot; modifiers=&quot;&quot;  />&quot;>
+                <img src=&quot;<t4 type=&quot;media&quot; id=&quot;189&quot; formatter=&quot;path/*&quot; />&quot; alt=&quot;Twitter Page&quot; width=&quot;48&quot; height=&quot;48&quot; >
+              <span class=&quot;wai hidden&quot;>Twitter</span>
+              </a>
+              " />
+              <t4 type="content" name="LinkedIn Link" output="selective-output" modifiers="" process-format="true" format="
+              <a href=&quot;<t4 type=&quot;content&quot; name=&quot;LinkedIn Link&quot; output=&quot;normal&quot; modifiers=&quot;&quot;  />&quot;>
+                <img src=&quot;<t4 type=&quot;media&quot; id=&quot;187&quot; formatter=&quot;path/*&quot; />&quot; alt=&quot;LinkedIn Page&quot; width=&quot;48&quot; height=&quot;48&quot; >
+               
+                <span class=&quot;wai hidden&quot;>LinkedIn</span>
+
+              </a>
+              " />
+            </div>

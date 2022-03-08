@@ -1,0 +1,101 @@
+<?php
+$errorCC = [];
+try {
+    mb_http_output('utf-8');
+    mb_internal_encoding('utf-8');
+    /* Version 2.1 */
+    $configCourseCompare = [];
+    $configCourseCompare['source']          = '<t4 type="content" name="JSON File" output="normal" formatter="path/*" />';
+    $configCourseCompare['library']         = '<t4 type="content" name="PHP Search Library" output="normal" formatter="path/*" />';
+    $configCourseCompare['max-results']     = '<t4 type="content" name="Max Results per Page" output="normal" />';
+    $configCourseCompare['course_search']   = '<t4 type="content" name="Course Search Link" output="linkurl" modifiers="nav_sections" />';
+    $configCourseCompare['min']             = '<t4 type="content" name="Min Results to Select" output="normal" />';
+    $configCourseCompare['max']             = '<t4 type="content" name="Max Results to Select" output="normal" />';
+   
+
+    if (!empty($configCourseCompare['option'])) {
+        $variablesCourseCompare = explode("\n", $configCourseCompare['option']);
+
+        $new_variablesCourseCompare = array();
+        //Check variables
+        foreach ($variablesCourseCompare as $variableCourseCompare) {
+            //Check my pattern variable = value
+            $checkCourseCompare = preg_match('/(.+)=(.+)$/iUm', $variableCourseCompare, $output_arrayCourseCompare);
+            //Remove " and ' and taking off first and final spaces.
+            if (isset($output_arrayCourseCompare[1], $output_arrayCourseCompare[2])) {
+                $keyCourseCompare = trim(str_replace(array('"', '\''), '', $output_arrayCourseCompare[1]));
+                $valueCourseCompare = str_replace(array('"', '\''), '', trim($output_arrayCourseCompare[2]));
+                //Check if there are not set other variables that are setting in different way in this script
+                if (!empty($keyCourseCompare) && !empty($valueCourseCompare)) {
+                    $new_variablesCourseCompare[$keyCourseCompare] = $valueCourseCompare;
+                }
+            }
+        }
+        if (!isset($configCourseCompare['options'])) {
+            $configCourseCompare['options'] = array();
+        }
+        foreach ($new_variablesCourseCompare as $keyCourseCompare => $valueCourseCompare) {
+            if (!isset($configCourseCompare['options'][$keyCourseCompare])) {
+                $configCourseCompare['options'][$keyCourseCompare] = null;
+            }
+            $configCourseCompare['options'][$keyCourseCompare] = $valueCourseCompare;
+        }
+    }
+
+    if (preg_match("/t4_([0-9]{16,20}+)\.php/Ui", $_SERVER['REQUEST_URI'], $output_arrayCourseCompare)) {
+        throw new Exception("Sorry, Course Compare is not available in preview.", 1);
+    }
+    // Configuration Options
+    $stopWordsCourseCompare = array('/\band\b/is', '/\bof\b/is', '/\bin\b/is', '/\bor\b/is', '/\bwith\b/is', '/\bthe\b/is', '/\bat\b/is');
+
+    require_once((strpos($configCourseCompare['library'], '.phar') !== false ? 'phar://' : '') . realpath($_SERVER["DOCUMENT_ROOT"]).$configCourseCompare['library'] . (strpos($configCourseCompare['library'], '.phar') !== false ? '/vendor/autoload.php' : ''));
+
+    $queryHandlerCourseCompare = \T4\PHPSearchLibrary\QueryHandlerFactory::getInstance('CompareQueryHandler', $_SERVER['QUERY_STRING']);
+    if (isset($_GET['addCourse']) && $_GET['addCourse'] > 0) {
+        $queryHandlerCourseCompare->addVarToCompare((int) $_GET['addCourse']);
+    }
+    if (isset($_GET['removeCourse']) && $_GET['removeCourse'] > 0) {
+        $queryHandlerCourseCompare->removeVarFromCompare((int) $_GET['removeCourse']);
+    }
+
+    $queryHandlerCourseCompare->handleQuery();
+
+    // Initialise our search handler and filters
+    $searchCourseCompare = \T4\PHPSearchLibrary\SearchFactory::getInstance('Search', $configCourseCompare['source']);
+    $exactSearchCourseCompare = \T4\PHPSearchLibrary\FilterFactory::getInstance('FilterByExactMatch', $searchCourseCompare);
+
+
+    if ($queryHandlerCourseCompare->isQuerySet('savedCourses')) {
+        $exactSearchCourseCompare->setMember('element', 'contentID');
+        $exactSearchCourseCompare->setMember('query', $queryHandlerCourseCompare->getQueryValue('savedCourses'));
+        $exactSearchCourseCompare->setMember('combinationOption', true);
+        $exactSearchCourseCompare->runFilter();
+        $searchCourseCompare->combineResults();
+    }
+
+    // Get the intersection of multiple result sets if necessary
+    $searchCourseCompare->intersectDocumentResults();
+
+    // Instantiate the DocumentCollection
+    $documentCollectionCourseCompare = \T4\PHPSearchLibrary\DocumentCollectionFactory::getInstance('DocumentCollection', $searchCourseCompare->getDocuments(), $searchCourseCompare->getDocumentResults(), $queryHandlerCourseCompare->doQuerysExist());
+
+    // Sort the document results
+    $documentCollectionCourseCompare->sort('courseTitle', SORT_ASC);
+
+    $queryCourseCompare = $queryHandlerCourseCompare->getQueryValuesForPrint();
+    $savedCourses = [];
+    if (isset($queryCourseCompare['savedCourses'])) {
+        $savedCourses = is_array($queryCourseCompare['savedCourses']) ? $queryCourseCompare['savedCourses'] : [$queryCourseCompare['savedCourses']];
+    }
+} catch (\UnderflowException $e) {
+    $errorCC[] = $e->getMessage();
+} catch (\RuntimeException $e) {
+    $errorCC[] = $e->getMessage();
+} catch (\InvalidArgumentException $e) {
+    $errorCC[] = $e->getMessage();
+} catch (\LengthException $e) {
+    $errorCC[] = $e->getMessage();
+} catch (\Exception $e) {
+    $errorCC[] = $e->getMessage();
+}
+?>

@@ -1,0 +1,16 @@
+{
+	"contentID": "<t4 type="meta" meta="content_id" />",
+    "courseName": "<t4 type="content" name="Course Name" output="normal" modifiers="striptags, js-var"  />",
+    "courseLocation": "<t4 type="content" name="Course Location" output="normal" modifiers="striptags, js-var"  />",
+    "courseType": "<t4 type="content" name="Course Type" output="normal" modifiers="striptags, js-var"  />",
+    "courseCode": "<t4 type="content" name="Course Code" output="normal" modifiers="striptags, js-var"  />",
+    "courseDuration": "<t4 type="content" name="Course Duration" output="normal" modifiers="striptags, js-var"  />",
+    "courseOverview": "<t4 type="content" name="Specific Course overview" output="normal" modifiers="striptags, js-var"  />",
+    "startingDates": "<t4 type="content" name="Starting dates" output="normal" modifiers="striptags, js-var"  />",
+    "courseDepartments": "<t4 type="content" name="Department" output="normal" modifiers="striptags, js-var"  />",
+    "courseFaculties": "<t4 type="content" name="Faculty" output="normal" modifiers="striptags, js-var"  />",
+    "courseCost": "<t4 type="content" name="Cost" output="normal" modifiers="striptags, js-var"  />",
+    "courseURL": "<t4 type="navigation" id="29"/>",
+    "HTMLBasicResult": "<tr><td><a href='<t4 type="navigation" id="29"/>'><t4 type="content" name="Course Name" output="normal" modifiers="striptags, js-var"  /></a></td><td><t4 type="content" name="Course Duration" output="normal" modifiers="striptags, js-var"  /></td><td><t4 type="content" name="Course Type" output="normal" modifiers="striptags, js-var"  /></td><td><t4 type="content" name="Course Code" output="normal" modifiers="striptags, js-var"  /></td><!-- BEGIN COURSE COMPARE --> <td class='course_compare_buttons'> <div class='include add course_compare_btn column'><a href='<t4 type='navigation' id='27' />?addCourse=<t4 type="meta" meta="content_id" />' class='save course-<t4 type="meta" meta="content_id" />'><span class='fa fa-plus'></span>&nbsp; Save</a></div><div class='added remove course_compare_btn column'><a href='<t4 type="navigation" id="27" />?removeCourse=<t4 type="meta" meta="content_id" />' class='save course-<t4 type="meta" meta="content_id" />'><span class='fa fa-check'></span>&nbsp; Saved</a></div> </td><!-- END COURSE COMPARE --></tr>",
+    "HTMLAdvancedResult": "<div class='course-listing row'><div class='course-listing-data columns-full'><h3><a href='<t4 type='navigation' id='29'/>'><t4 type='content' name='Course Name' output='normal' modifiers='striptags, js-var'  /></a> <small><t4 type='content' name='Course Code' output='normal' modifiers='striptags, js-var'  /></small></h3><ul class='no-bullet'><li><span>Level</span>: <t4 type='content' name='Course Type' output='normal' modifiers='striptags, js-var'  /></li><li><span>Duration</span>: <t4 type='content' name='Course Duration' output='normal' modifiers='striptags, js-var'  /></li><li><span>Location</span>: <t4 type='content' name='Course Location' output='normal' modifiers='striptags, js-var'  /></li></ul></div></div>"
+},

@@ -1,0 +1,23 @@
+<li class="snippet event clearfix">
+  <a href="<t4 type="content" name="Title" output="fulltext" use-element="true" filename-element="Title" modifiers="striptags,htmlentities" />">
+    <div class="date-stamp">
+      <div class="month"><t4 type="content" name="Start Date and Time" date_format="MMM" output="normal" modifiers=""  /></div>
+      <div class="day"><t4 type="content" name="Start Date and Time" date_format="d" output="normal" modifiers=""  /></div>
+    </div>
+    
+    <img src="<t4 type="content" name="Image" output="normal" formatter="path/*" />" alt="<t4 type="content" name="Title" output="normal" modifiers="striptags,htmlentities" />" class="event-image" >
+
+    <div class="event-info">
+    <header>
+    <p class="title"><t4 type="content" name="Title" output="normal" modifiers="striptags"  /></p>
+    </header>
+    <p>
+      <span class="fa fa-clock-o"></span> <t4 type="content" name="Start Date and Time" date_format="HH:mm" output="normal" modifiers=""  /> - <t4 type="content" name="End Date and Time" date_format="HH:mm" output="normal" modifiers=""  /><br/>
+      <span class="fa fa-location-arrow"></span> <t4 type="content" name="Venue" output="normal" modifiers=""  />
+      <br/>
+      <span class="fa fa-university"></span> <t4 type="content" name="Category" output="normal" display_field="name" />
+    </p>
+    </div>
+    
+  </a>
+</li>

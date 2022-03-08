@@ -1,0 +1,70 @@
+<t4 type="media" formatter="text/javascript" id="438" />
+<t4 type="media" formatter="text/javascript" id="10719" />
+<script>
+$(document).ready(function(){
+    
+    
+    if ( $('.course-charts').length ){ 
+
+
+
+ var ctxEmployed = document.getElementById("chart-employed").getContext("2d");
+        var employedPercentage = 74;
+        var unemployedPercentage = 100 - employedPercentage;
+        var employedData = [
+            {
+                value: unemployedPercentage,
+                color:"rgba(14, 73, 102,.25)"
+            },
+            {
+                value : employedPercentage,
+                color : "rgb(14, 73, 102)"
+            }
+        ];
+        employedOptions = {
+            segmentShowStroke : false,
+            animationEasing : "easeOutBounce",
+            animationSteps : 100
+        }
+        var chartEmployed = new Chart(ctxEmployed).Pie(employedData,employedOptions);
+        
+        var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
+        var ctxBreakdown = document.getElementById("chart-breakdown").getContext("2d");
+        var breakdownData = {
+            labels : ["Science","Arts","Practical","Theory"],
+            datasets : [
+                {
+                    fillColor : "rgba(14, 73, 102,.25)",
+                    strokeColor : "rgb(14, 73, 102)",
+                    pointColor : "rgb(14, 73, 102)",
+                    pointStrokeColor : "rgba(14, 73, 102,.8)",
+                    data : [10,80,15,76]
+                }
+            ]
+        }
+        var breakdownOptions = {
+            scaleOverlay : true,
+            scaleOverride : true,
+            scaleSteps : 5,
+            scaleStepWidth : 20,
+            scaleStartValue : 0
+        }
+    
+        var chartBreakdown = new Chart(ctxBreakdown).Radar(breakdownData,breakdownOptions);
+    
+        $('.course-details canvas').each(function() {
+            $(this).height($(this).width());
+        });
+
+
+
+
+
+
+}; //end check for existence
+    
+    
+    
+       
+    });
+</script>

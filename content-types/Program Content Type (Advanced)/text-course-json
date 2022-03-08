@@ -1,0 +1,40 @@
+try {
+  //Defining main functions
+  function processTags(t4Tag) {
+    myContent = content || null;
+    return String(com.terminalfour.publish.utils.BrokerUtils.processT4Tags(dbStatement, publishCache, section, myContent, language, isPreview, t4Tag));
+  }
+
+  function getLayout(contentLayout) {
+        var tid = content.getContentTypeID();
+        formatter     = contentLayout;
+        format        = publishCache.getTemplateFormatting(dbStatement, tid, formatter);
+        formatString  = format.getFormatting();
+        return processTags(formatString);
+  }
+
+  var list = {};
+
+
+  list['contentID']         = processTags('<t4 type="meta" meta="content_id" />');
+  list['courseName']        = processTags('<t4 type="content" name="Program Name" output="normal" modifiers="striptags,htmlentities" />');
+  list['courseOverview']    = processTags('<t4 type="content" name="Specific Program overview" output="normal" modifiers="striptags,htmlentities" />');
+  list['courseLocation']    = processTags('<t4 type="content" name="Program Location" output="normal" display_field="value" />');
+  list['courseType']        = processTags('<t4 type="content" name="Program Type" output="normal" display_field="value" />');
+  list['courseCode']        = processTags('<t4 type="content" name="Program Code" output="normal" modifiers="striptags,htmlentities" />');
+  list['courseDuration']    = processTags('<t4 type="content" name="Program Duration" output="normal" display_field="value" />');
+  list['startingDates']     = processTags('<t4 type="content" name="Starting dates" output="normal" display_field="value" />');
+  list['courseDepartments'] = processTags('<t4 type="content" name="Department" output="normal" display_field="value" />');
+  list['courseFaculties']   = processTags('<t4 type="content" name="Faculty" output="normal" display_field="value" />');
+  list['courseCost']        = processTags('<t4 type="content" name="Cost" output="normal" modifiers="striptags,htmlentities" />');
+  list['startDate']         = processTags('<t4 type="content" name="Start Date" output="normal" />');
+  list['courseURL']         = processTags('<t4 type="navigation" name="Path to current section" id="29" />');
+
+
+  var jsonObj = new org.json.JSONObject(list);
+  document.write(jsonObj.toString() + ',');
+
+}
+catch(err) {
+	document.write(err);
+}

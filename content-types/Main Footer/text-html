@@ -1,0 +1,41 @@
+<footer class="social-footer">
+      <div class="row">
+        
+<t4 type="content" name="Top heading" output="selective-output" modifiers="" process-format="true" format="
+<div class=&quot;small-12 columns&quot;><div class=&quot;h3&quot; >$value</div></div>" />
+
+
+
+        <div class="small-12 medium-4 columns">
+          <t4 type="navigation" name="Site Config Instagram Feed" id="202" />
+        </div>
+        
+        <div class="small-12 medium-4 columns">
+          <div class="soc twitter-footer">
+           <t4 type="content" name="Top heading" output="selective-output" process-format="true" format="<div class=&quot;h4&quot;>$value</div>" />
+            <t4 type="navigation" name="Site Config Twitter Feed" id="203" />
+          </div>
+        </div>
+        
+        <div class="small-12 medium-4 columns">
+          <div class="soc clearfix">
+            <t4 type="navigation" name="Site-Config Social Media Links" id="200" />
+          </div>
+        </div>
+           
+      </div>
+    </footer>    
+    <footer class="global-footer">
+      <div class="row">
+        <div class="small-12 large-4 columns">
+          <p>&copy; <t4 type="navigation" name="Site-Config Copyright Text" id="201" /></p>
+        </div>
+        <div class="small-12 large-8 columns">
+          <ul>
+           <t4 type="navigation" name="Footer Bottom Links" id="14" /> <!-- footer bottom links -->
+          </ul>
+        </div>
+      </div>
+
+
+    </footer>
