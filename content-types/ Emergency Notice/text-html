@@ -1,3 +1,4 @@
+<!--That is a comment to test it-->
 <p>
 	<a href="<t4 type="content" name="Title" output="fulltext" use-element="true" filename-element="Title" modifiers="medialibrary,nav_sections" enable-dedit="false" />"><t4 type="content" name="Title" output="normal" modifiers="striptags" /></a>
 </p>
